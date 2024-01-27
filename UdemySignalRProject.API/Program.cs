@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+using UdemySignalRProject.DAL.Concreate;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +11,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
+builder.Services.AddDbContext<SignalRContext>(opts =>
+{
+    opts.UseSqlServer(builder.Configuration["SqlDbConnect"], conf =>
+    {
+
+        conf.MigrationsAssembly(Assembly.GetAssembly(typeof(SignalRContext)).GetName().Name);
+    });
+});
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -23,7 +35,7 @@ app.MapControllers();
 
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+internal record WeatherForecast(DateOnly Date, int TemperatureC, string Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
