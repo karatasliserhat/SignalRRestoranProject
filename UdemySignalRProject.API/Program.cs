@@ -9,7 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllersWithViews();
-var app = builder.Build();
 
 builder.Services.AddDbContext<SignalRContext>(opts =>
 {
@@ -19,6 +18,15 @@ builder.Services.AddDbContext<SignalRContext>(opts =>
         conf.MigrationsAssembly(Assembly.GetAssembly(typeof(SignalRContext)).GetName().Name);
     });
 });
+
+
+
+
+
+
+var app = builder.Build();
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
