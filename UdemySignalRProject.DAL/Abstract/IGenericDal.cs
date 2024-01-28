@@ -2,11 +2,11 @@
 {
     public interface IGenericDal<T> where T : class
     {
-        void Add(T entity);
+        Task Add(T entity);
         void Delete(T entity);
         void Update(T entity);
-        T GetById(int id);
+        Task<T> GetById(int id);
         IQueryable<T> GetAllQueryable();
-        List<T> GetAll();
+        Task<List<T>> GetAll();
     }
 }

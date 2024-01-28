@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using UdemySignalRProject.API.Mapping;
 using UdemySignalRProject.DAL.Concreate;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,7 @@ builder.Services.AddDbContext<SignalRContext>(opts =>
 });
 
 
-
+builder.Services.AddAutoMapper(typeof(MapProfile));
 
 
 
