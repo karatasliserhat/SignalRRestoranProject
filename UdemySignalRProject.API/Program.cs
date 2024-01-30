@@ -1,7 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using UdemySignalRProject.API.Mapping;
+using UdemySignalRProject.BusinessLayer.Abstract;
+using UdemySignalRProject.BusinessLayer.Concreate;
+using UdemySignalRProject.DAL.Abstract;
 using UdemySignalRProject.DAL.Concreate;
+using UdemySignalRProject.DAL.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +23,17 @@ builder.Services.AddDbContext<SignalRContext>(opts =>
         conf.MigrationsAssembly(Assembly.GetAssembly(typeof(SignalRContext)).GetName().Name);
     });
 });
-
+builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IAboutService, AboutManager>();
+builder.Services.AddScoped<IBookingService, BookingManager>();
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<IContactService, ContactManager>();
+builder.Services.AddScoped<IDiscountService, DiscountManager>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IFeatureService, FeatureManager>();
+builder.Services.AddScoped<IProductService, ProductManager>();
+builder.Services.AddScoped<ISocialMediaService, SocialMediaManager>();
+builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
@@ -43,8 +57,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

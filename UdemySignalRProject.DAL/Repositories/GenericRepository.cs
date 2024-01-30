@@ -15,7 +15,7 @@ namespace UdemySignalRProject.DAL.Repositories
 
         public async Task Add(T entity)
         {
-            await _context.AddAsync(entity);
+            await _context.Set<T>().AddAsync(entity);
         }
 
         public void Delete(T entity)
@@ -35,12 +35,12 @@ namespace UdemySignalRProject.DAL.Repositories
 
         public async Task<T> GetById(int id)
         {
-            return await _context.Set<T>().FirstOrDefaultAsync();
+            return await _context.Set<T>().FindAsync(id);
         }
 
         public void Update(T entity)
         {
-            _context.Update(entity);
+            _context.Set<T>().Update(entity);
         }
     }
 }

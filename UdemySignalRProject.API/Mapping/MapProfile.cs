@@ -13,45 +13,45 @@ namespace UdemySignalRProject.API.Mapping
             CreateMap<About, CreateAboutDto>().ReverseMap();
             CreateMap<About, UpdateAboutDto>().ReverseMap();
 
-            CreateMap<About, GetBookingDto>().ReverseMap();
-            CreateMap<About, ResultBookingDto>().ReverseMap();
-            CreateMap<About, CreateBookingDto>().ReverseMap();
-            CreateMap<About, UpdateBookingDto>().ReverseMap();
+            CreateMap<Booking, GetBookingDto>().ReverseMap();
+            CreateMap<Booking, ResultBookingDto>().ReverseMap();
+            CreateMap<Booking, CreateBookingDto>().ReverseMap();
+            CreateMap<Booking, UpdateBookingDto>().ReverseMap();
 
-            CreateMap<About, GetCategoryDto>().ReverseMap();
-            CreateMap<About, ResultCategoryDto>().ReverseMap();
-            CreateMap<About, CreateCategoryDto>().ReverseMap();
-            CreateMap<About, UpdateCategoryDto>().ReverseMap();
+            CreateMap<Category, GetCategoryDto>().ReverseMap();
+            CreateMap<Category, ResultCategoryDto>().ReverseMap();
+            CreateMap<Category, CreateCategoryDto>().ReverseMap();
+            CreateMap<Category, UpdateCategoryDto>().ReverseMap();
 
-            CreateMap<About, GetContactDto>().ReverseMap();
-            CreateMap<About, ResultContactDto>().ReverseMap();
-            CreateMap<About, CreateContactDto>().ReverseMap();
-            CreateMap<About, UpdateContactDto>().ReverseMap();
+            CreateMap<Contact, GetContactDto>().ReverseMap();
+            CreateMap<Contact, ResultContactDto>().ReverseMap();
+            CreateMap<Contact, CreateContactDto>().ReverseMap();
+            CreateMap<Contact, UpdateContactDto>().ReverseMap();
 
-            CreateMap<About, GetDicsountDto>().ReverseMap();
-            CreateMap<About, ResultDiscountDto>().ReverseMap();
-            CreateMap<About, CreateDiscountDto>().ReverseMap();
-            CreateMap<About, UpdateDiscountDto>().ReverseMap();
+            CreateMap<Discount, GetDicsountDto>().ReverseMap();
+            CreateMap<Discount, ResultDiscountDto>().ReverseMap();
+            CreateMap<Discount, CreateDiscountDto>().ReverseMap();
+            CreateMap<Discount, UpdateDiscountDto>().ReverseMap();
 
-            CreateMap<About, GetFeatureDto>().ReverseMap();
-            CreateMap<About, ResultFeatureDto>().ReverseMap();
-            CreateMap<About, CreateFeatureDto>().ReverseMap();
-            CreateMap<About, UpdateFeatureDto>().ReverseMap();
+            CreateMap<Feature, GetFeatureDto>().ReverseMap();
+            CreateMap<Feature, ResultFeatureDto>().ReverseMap();
+            CreateMap<Feature, CreateFeatureDto>().ReverseMap();
+            CreateMap<Feature, UpdateFeatureDto>().ReverseMap();
 
-            CreateMap<About, GetProductDto>().ReverseMap();
-            CreateMap<About, ResultProductDto>().ReverseMap();
-            CreateMap<About, CreateProductDto>().ReverseMap();
-            CreateMap<About, UpdateProductDto>().ReverseMap();
+            CreateMap<Product, GetProductDto>().ReverseMap();
+            CreateMap<Product, ResultProductDto>().ReverseMap();
+            CreateMap<Product, CreateProductDto>().ReverseMap();
+            CreateMap<Product, UpdateProductDto>().ReverseMap();
 
-            CreateMap<About, GetSocialMediaDto>().ReverseMap();
-            CreateMap<About, ResultSocialMediaDto>().ReverseMap();
-            CreateMap<About, CreateSocialMediaDto>().ReverseMap();
-            CreateMap<About, UpdateSocialMediaDto>().ReverseMap();
+            CreateMap<SocialMedia, GetSocialMediaDto>().ReverseMap();
+            CreateMap<SocialMedia, ResultSocialMediaDto>().ReverseMap();
+            CreateMap<SocialMedia, CreateSocialMediaDto>().ReverseMap();
+            CreateMap<SocialMedia, UpdateSocialMediaDto>().ReverseMap();
 
-            CreateMap<About, GetTestimonialDto>().ReverseMap();
-            CreateMap<About, ResultTestimonialDto>().ReverseMap();
-            CreateMap<About, CreateTestimonialDto>().ReverseMap();
-            CreateMap<About, UpdateTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, GetTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, ResultTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, CreateTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, UpdateTestimonialDto>().ReverseMap();
         }
     }
 }
