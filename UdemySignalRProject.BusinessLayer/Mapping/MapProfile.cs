@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using UdemySignalRProject.DTO.Dtos;
+using UdemySignalRProject.DTO.Dtos.ProductDto;
 using UdemySignalRProject.EntityLayer.Entities;
 
-namespace UdemySignalRProject.API.Mapping
+namespace UdemySignalRProject.BusinessLayer.Mapping
 {
     public class MapProfile:Profile
     {
@@ -42,6 +43,7 @@ namespace UdemySignalRProject.API.Mapping
             CreateMap<Product, ResultProductDto>().ReverseMap();
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
+            CreateMap<Product, ResultProductWithGetCategory>().ReverseMap();
 
             CreateMap<SocialMedia, GetSocialMediaDto>().ReverseMap();
             CreateMap<SocialMedia, ResultSocialMediaDto>().ReverseMap();

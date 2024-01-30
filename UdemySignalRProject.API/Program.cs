@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using UdemySignalRProject.API.Mapping;
 using UdemySignalRProject.BusinessLayer.Abstract;
 using UdemySignalRProject.BusinessLayer.Concreate;
+using UdemySignalRProject.BusinessLayer.Mapping;
 using UdemySignalRProject.DAL.Abstract;
 using UdemySignalRProject.DAL.Concreate;
 using UdemySignalRProject.DAL.Repositories;

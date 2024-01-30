@@ -7,7 +7,6 @@ namespace UdemySignalRProject.BusinessLayer.Concreate
     {
         private readonly IGenericDal<T> _generiDal;
         private readonly IUnitOfWork _unitOfWork;
-
         public GenericManager(IGenericDal<T> generiDal, IUnitOfWork unitOfWork)
         {
             _generiDal = generiDal;

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UdemySignalRProject.BusinessLayer.Abstract;
 using UdemySignalRProject.DTO.Dtos;
+using UdemySignalRProject.DTO.Dtos.ProductDto;
 using UdemySignalRProject.EntityLayer.Entities;
 
 namespace UdemySignalRProject.API.Controllers
@@ -33,6 +34,13 @@ namespace UdemySignalRProject.API.Controllers
         public async Task<IActionResult> GetProduct(int id)
         {
             return Ok(await _productService.TGetByIdAsync(id));
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProductWithCategories()
+        {
+            var datas = await _productService.GetProductsWithCategories();
+            var datasMap= _mapper.Map<List<ResultProductWithGetCategory>>(datas);
+            return Ok(datasMap);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
