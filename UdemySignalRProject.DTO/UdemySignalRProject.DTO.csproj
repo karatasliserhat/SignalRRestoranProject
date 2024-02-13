@@ -6,4 +6,8 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UdemySignalRProject.EntityLayer\UdemySignalRProject.EntityLayer.csproj" />
+  </ItemGroup>
+
 </Project>

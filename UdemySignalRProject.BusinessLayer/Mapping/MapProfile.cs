@@ -5,7 +5,7 @@ using UdemySignalRProject.EntityLayer.Entities;
 
 namespace UdemySignalRProject.BusinessLayer.Mapping
 {
-    public class MapProfile:Profile
+    public class MapProfile : Profile
     {
         public MapProfile()
         {
@@ -43,7 +43,7 @@ namespace UdemySignalRProject.BusinessLayer.Mapping
             CreateMap<Product, ResultProductDto>().ReverseMap();
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
-            CreateMap<Product, ResultProductWithGetCategory>().ReverseMap();
+            CreateMap<Product, ResultProductWithGetCategory>().ForMember(dest => dest.CategoryName, opt => opt.MapFrom(x => x.Category.CategoryName)).ReverseMap();
 
             CreateMap<SocialMedia, GetSocialMediaDto>().ReverseMap();
             CreateMap<SocialMedia, ResultSocialMediaDto>().ReverseMap();

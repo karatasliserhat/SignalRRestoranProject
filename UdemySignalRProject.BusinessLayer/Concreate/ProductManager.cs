@@ -16,20 +16,11 @@ namespace UdemySignalRProject.BusinessLayer.Concreate
             _context = context;
         }
 
-        public async Task<List<ResultProductWithGetCategory>> GetProductsWithCategories()
+        public async Task<List<Product>> GetProductsWithCategories()
         {
-            return await _context.Products.Include(x => x.Category).Select(y => new ResultProductWithGetCategory
-            {
-                CategoryId = y.CategoryId,
-                CategoryName = y.Category.CategoryName,
-                ProductId = y.ProductId,
-                Description = y.Description,
-                ImageUrl = y.ImageUrl,
-                Price = y.Price,
-                ProductName = y.ProductName,
-                ProductStatus = y.ProductStatus,
+            var datas= await _context.Products.Include(x => x.Category).ToListAsync();
 
-            }).ToListAsync();
+            return datas;
         }
     }
 }
