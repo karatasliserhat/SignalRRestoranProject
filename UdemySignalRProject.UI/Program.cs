@@ -1,9 +1,20 @@
+using UdemySignalRProject.UI.ApiServices;
+using UdemySignalRProject.UI.IApiServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<ICategoryApiService,CategoryApiService>();
+builder.Services.AddHttpClient<ICategoryApiService, CategoryApiService>(opts =>
+{
+    opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+builder.Services.AddDataProtection();
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -23,7 +23,8 @@ namespace UdemySignalRProject.API.Controllers
         public async Task<IActionResult> CategoryList()
         {
             var values = await _categoryService.TGetAllAsync();
-            return Ok(values);
+            var mapDAta = _mapper.Map<List<ResultCategoryDto>>(values);
+            return Ok(mapDAta);
         }
         [HttpPost]
         public async Task<IActionResult> CreateCategoryAsync(CreateCategoryDto createCategorygDto)
