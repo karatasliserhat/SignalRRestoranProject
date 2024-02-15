@@ -1,0 +1,46 @@
+﻿@model CreateDiscountDto
+@{
+    ViewData["Title"] = "CreateDiscount";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">İndirim İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">İndirim Ekleme Formu</div>
+                    </div>
+                    <form asp-action="CreateDiscount" asp-controller="Discount" method="post">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label asp-for="@Model.Title"></label>
+                                <input type="text" class="form-control" asp-for="@Model.Title" placeholder="Başlık yazınız">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Amaount"></label>
+                                <input type="number" class="form-control" asp-for="@Model.Amaount" placeholder="İndirim Miktarı">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Description"></label>
+                                <input type="text" class="form-control" asp-for="@Model.Description" placeholder="İndirim Açıklaması Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ImageUrl"></label>
+                                <input type="text" class="form-control" asp-for="@Model.ImageUrl" placeholder="Resim Ekleyiniz">
+                            </div>
+
+
+                            <div class="card-action">
+                                <button class="btn btn-success">İndirim Ekle</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,49 @@
+﻿@model UpdateBookingDto
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Rezervasyon İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Rezervasyon Güncelleme Formu</div>
+                    </div>
+                    <form asp-action="Update" asp-controller="Booking" method="post">
+                        <input type="hidden" asp-for="@Model.BookingId" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label asp-for="@Model.Name"></label>
+                                <input type="text" class="form-control" asp-for="@Model.Name" placeholder="Ad Soyad">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Phone"></label>
+                                <input type="tel" class="form-control" asp-for="@Model.Phone" placeholder="Telefon Numarası">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Mail"></label>
+                                <input type="email" class="form-control" asp-for="@Model.Mail" placeholder="Email Adresi">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.PersonCount"></label>
+                                <input type="number" class="form-control" asp-for="@Model.PersonCount" placeholder="Kişi Sayısı">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Date"></label>
+                                <input type="date" class="form-control" asp-for="@Model.Date">
+                            </div>
+                            <div class="card-action">
+                                <button class="btn btn-success">Rezervasyon Güncelle</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

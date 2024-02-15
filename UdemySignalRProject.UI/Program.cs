@@ -6,11 +6,45 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<ICategoryApiService,CategoryApiService>();
+builder.Services.AddScoped<ICategoryApiService, CategoryApiService>();
+builder.Services.AddScoped<IProductApiService, ProductApiService>();
+builder.Services.AddScoped<IAboutApiService, AboutApiService>();
+builder.Services.AddScoped<IBookingApiService, BookingApiService>();
+builder.Services.AddScoped<IContactApiService, ContactApiService>();
+builder.Services.AddScoped<IDiscountApiService, DiscountApiService>();
+builder.Services.AddScoped<IFeatureApiService, FeatureApiService>();
+
 builder.Services.AddHttpClient<ICategoryApiService, CategoryApiService>(opts =>
 {
     opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
 });
+
+builder.Services.AddHttpClient<IProductApiService, ProductApiService>(opts =>
+{
+    opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+builder.Services.AddHttpClient<IAboutApiService, AboutApiService>(opts =>
+{
+    opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+builder.Services.AddHttpClient<IBookingApiService, BookingApiService>(opts =>
+{
+    opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+builder.Services.AddHttpClient<IContactApiService, ContactApiService>(opts =>
+{
+    opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+builder.Services.AddHttpClient<IDiscountApiService, DiscountApiService>(opts =>
+{
+    opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+builder.Services.AddHttpClient<IFeatureApiService, FeatureApiService>(opts =>
+{
+    opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
+
 builder.Services.AddDataProtection();
 
 var app = builder.Build();

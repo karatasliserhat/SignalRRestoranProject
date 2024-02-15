@@ -15,11 +15,15 @@
                     </div>
                     <form asp-action="Update" asp-controller="Category" method="post">
                         <input type="hidden" asp-for="@Model.CategoryId" />
-                        <input type="hidden" asp-for="@Model.Status" />
                         <div class="card-body">
                             <div class="form-group">
                                 <label asp-for="@Model.CategoryName"></label>
                                 <input type="text" class="form-control" asp-for="@Model.CategoryName" placeholder="Kategori Adı">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Status"></label>
+                                <select class="form-control" asp-for="@Model.Status" asp-items="@ViewBag.TFList">
+                                </select>
                             </div>
                             <div class="card-action">
                                 <button class="btn btn-success">Güncelle</button>

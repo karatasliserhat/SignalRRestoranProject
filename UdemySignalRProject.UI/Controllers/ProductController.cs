@@ -7,15 +7,23 @@ using UdemySignalRProject.UI.IApiServices;
 
 namespace UdemySignalRProject.UI.Controllers
 {
-    public class CategoryController : Controller
+    public class ProductController : Controller
     {
-        private readonly ICategoryApiService _categoryApiService;
+        private readonly IProductApiService _productService;
         private readonly IDataProtector _dataProtector;
-
-        public CategoryController(ICategoryApiService categoryApiService, IDataProtectionProvider dataProtection)
+        private readonly ICategoryApiService _categoryApiService;
+        public ProductController(IProductApiService productService, IDataProtectionProvider dataProtector, ICategoryApiService categoryApiService)
         {
-            _dataProtector = dataProtection.CreateProtector("CategoryController");
+            _productService = productService;
+            _dataProtector = dataProtector.CreateProtector("ProductController");
             _categoryApiService = categoryApiService;
+        }
+
+        public async Task GetCategorySelectList(int id = 0)
+        {
+            var responseCategory = await _categoryApiService.GetListAsync("Category");
+            ViewBag.CategoryData = new SelectList(responseCategory, "CategoryId", "CategoryName", id);
+
         }
         public void GetTrueFalseSelectList()
         {
@@ -23,40 +31,40 @@ namespace UdemySignalRProject.UI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var response = await _categoryApiService.GetListAsync("Category");
-            response.ForEach(x => { x.DataProtector = _dataProtector.Protect(x.CategoryId.ToString()); });
+            var response = await _productService.GetListAsync("Product/GetProductWithCategories");
+            response.ForEach(x => { x.DataProtect = _dataProtector.Protect(x.ProductId.ToString()); });
 
             return View(response);
 
         }
 
         [HttpGet]
-        public IActionResult CreateCategory()
+        public async Task<IActionResult> CreateProduct()
         {
+            await GetCategorySelectList();
             GetTrueFalseSelectList();
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
+        public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
 
-            var responseMessage = await _categoryApiService.CrateAsync(createCategoryDto, "Category");
+            var responseMessage = await _productService.CrateAsync(createProductDto, "Product");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction(nameof(Index));
 
             }
-
+            await GetCategorySelectList();
             GetTrueFalseSelectList();
             return View();
 
         }
-
         public async Task<IActionResult> Delete(string id)
         {
             var dataUnprodected = int.Parse(_dataProtector.Unprotect(id));
 
-            var response = await _categoryApiService.DeleteAsync(dataUnprodected, "Category");
+            var response = await _productService.DeleteAsync(dataUnprodected, "Product");
 
             if (response.IsSuccessStatusCode)
             {
@@ -69,24 +77,25 @@ namespace UdemySignalRProject.UI.Controllers
         public async Task<IActionResult> Update(string id)
         {
             var dataUnprodected = int.Parse(_dataProtector.Unprotect(id));
-            var responseData = await _categoryApiService.UpdateGetByIdAsync(dataUnprodected, "Category");
+            var responseData = await _productService.UpdateGetByIdAsync(dataUnprodected, "Product");
+            await GetCategorySelectList(responseData.CategoryId);
             GetTrueFalseSelectList();
             return View(responseData);
         }
         [HttpPost]
-        public async Task<IActionResult> Update(UpdateCategoryDto updateCategoryDto)
+        public async Task<IActionResult> Update(UpdateProductDto updateProductDto)
         {
-            var responseMessage = await _categoryApiService.UpdateAsync(updateCategoryDto, "Category");
+            var responseMessage = await _productService.UpdateAsync(updateProductDto, "Product");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction(nameof(Index));
 
             }
-            GetTrueFalseSelectList();
+
+            await GetCategorySelectList(updateProductDto.CategoryId);
 
             return View();
 
         }
-
     }
 }

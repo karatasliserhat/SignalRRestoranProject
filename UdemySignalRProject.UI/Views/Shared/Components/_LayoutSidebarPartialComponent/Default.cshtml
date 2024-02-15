@@ -7,7 +7,7 @@
             <div class="info">
                 <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                     <span>
-                        SignalR Yönetim Paneli
+                        Yönetim Paneli
                         <span class="user-level">Administrator</span>
                         <span class="caret"></span>
                     </span>
@@ -57,24 +57,27 @@
                 </a>
             </li>
             <li class="nav-item active">
-                <a href="tables.html">
+                <a asp-controller="Product" asp-action="Index">
                     <i class="la la-th"></i>
                     <p>Ürünler</p>
-                    <span class="badge badge-count">6</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="notifications.html">
+                <a asp-action="Index" asp-controller="Booking">
                     <i class="la la-bell"></i>
                     <p>Rezervasyonlar</p>
-                    <span class="badge badge-success">3</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="typography.html">
+                <a asp-action="Index" asp-controller="About">
                     <i class="la la-font"></i>
                     <p>Hakkımızda</p>
-                    <span class="badge badge-danger">25</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-action="Index" asp-controller="Contact">
+                    <i class="la la-font"></i>
+                    <p>İletişim</p>
                 </a>
             </li>
             <li class="nav-item">
@@ -84,13 +87,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="icons.html">
+                <a asp-controller="Discount" asp-action="Index">
                     <i class="la la-fonticons"></i>
                     <p>İndirimler</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="icons.html">
+                <a asp-controller="Feature" asp-action="Index">
                     <i class="la la-fonticons"></i>
                     <p>Öne Çıkanlar</p>
                 </a>

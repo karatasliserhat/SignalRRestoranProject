@@ -1,32 +1,37 @@
-﻿@model List<ResultCategoryDto>
+﻿@model List<ResultBookingDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 
     int count = 0;
 }
+
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Kategori İşlemleri</h4>
+        <h4 class="page-title">Rezervasyon İşlemleri</h4>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Kategori Listesi</div>
+                        <div class="card-title">Rezervasyon Listesi</div>
                     </div>
                     <div class="card-body">
                         <div class="card-sub">
-                            Kategori İle ilgili işlemleri aşağıdan geçerkleştirebilirsiniz.
+                            Rezervasyon İle ilgili işlemleri aşağıdan geçerkleştirebilirsiniz.
                         </div>
                         <div class="text-end mb-2 my-2">
-                            <a type="submit" asp-controller="Category" asp-action="CreateCategory" class="btn btn-outline-info">Yeni Kategori</a>
+                            <a type="submit" asp-controller="Booking" asp-action="CreateBooking" class="btn btn-outline-info">Yeni Rezervasyon</a>
                         </div>
                         <table class="table mt-3">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Kategori Adı</th>
-                                    <th scope="col">Durum</th>
+                                    <th scope="col">Müşteri Adı</th>
+                                    <th scope="col">Telefon</th>
+                                    <th scope="col">Mail</th>
+                                    <th scope="col">Kişi sayısı</th>
+                                    <th scope="col">Tarih</th>
+                                    <th scope="col">Rezervasyon Durumu</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
                                 </tr>
@@ -39,10 +44,14 @@
                                         count++;
                                         <tr>
                                             <td>@count</td>
-                                            <td>@item.CategoryName</td>
-                                            <td>@(item.Status==true?"Akif":"Pasif")</td>
-                                            <td><a class="btn btn-outline-danger" asp-controller="Category" asp-action="Delete" asp-route-id="@item.DataProtector">Sil</a></td>
-                                            <td><a class="btn btn-outline-warning" asp-controller="Category" asp-action="Update" asp-route-id="@item.DataProtector">Güncelle</a></td>
+                                            <td>@item.Name</td>
+                                            <td>@item.Phone</td>
+                                            <td>@item.Mail</td>
+                                            <td>@item.PersonCount</td>
+                                            <td>@(item.Date.ToShortDateString())</td>
+                                            <td>Rezervasyon Alındı</td>
+                                            <td><a class="btn btn-outline-danger" asp-controller="Booking" asp-action="Delete" asp-route-id="@item.DataProtect">Sil</a></td>
+                                            <td><a class="btn btn-outline-warning" asp-controller="Booking" asp-action="Update" asp-route-id="@item.DataProtect">Güncelle</a></td>
                                         </tr>
                                     }
                                 </tbody>
@@ -51,7 +60,7 @@
                             {
                                 <tbody>
                                     <tr class="text-center">
-                                        <td colspan="5">Veri Yok</td>
+                                        <td colspan="8">Veri Yok</td>
                                     </tr>
                                 </tbody>
                             }
@@ -64,4 +73,3 @@
         </div>
     </div>
 </div>
-
