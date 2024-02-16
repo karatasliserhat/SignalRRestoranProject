@@ -13,6 +13,8 @@ builder.Services.AddScoped<IBookingApiService, BookingApiService>();
 builder.Services.AddScoped<IContactApiService, ContactApiService>();
 builder.Services.AddScoped<IDiscountApiService, DiscountApiService>();
 builder.Services.AddScoped<IFeatureApiService, FeatureApiService>();
+builder.Services.AddScoped<ISocialMediaApiService, SocialMediaApiService>();
+builder.Services.AddScoped<ITestimonialApiService, TestimonialApiService>();
 
 builder.Services.AddHttpClient<ICategoryApiService, CategoryApiService>(opts =>
 {
@@ -43,7 +45,14 @@ builder.Services.AddHttpClient<IFeatureApiService, FeatureApiService>(opts =>
 {
     opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
 });
-
+builder.Services.AddHttpClient<ISocialMediaApiService, SocialMediaApiService>(opts =>
+{
+    opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+builder.Services.AddHttpClient<ITestimonialApiService, TestimonialApiService>(opts =>
+{
+    opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
 
 builder.Services.AddDataProtection();
 
