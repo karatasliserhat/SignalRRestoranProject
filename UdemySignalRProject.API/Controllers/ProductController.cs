@@ -35,11 +35,54 @@ namespace UdemySignalRProject.API.Controllers
         {
             return Ok(await _productService.TGetByIdAsync(id));
         }
-        [HttpGet("[action]")]
+
+        [HttpGet("GetProductCount")]
+        public IActionResult GetProductCount()
+        {
+            return Ok(_productService.TProductCount());
+        }
+
+
+        [HttpGet("GetProductPriceAvg")]
+        public IActionResult GetProductPriceAvg()
+        {
+            return Ok(_productService.TProductPriceAvg());
+        }
+
+        [HttpGet("GetProductMinPrice")]
+        public IActionResult GetProductMinPrice()
+        {
+            return Ok(_productService.TProductMinPrice());
+        }
+
+        [HttpGet("GetProductMaxPrice")]
+        public IActionResult GetProductMaxPrice()
+        {
+            return Ok(_productService.TProductMaxPrice());
+        }
+
+        [HttpGet("GetProductAvgByCategoryNameHamburger")]
+        public IActionResult GetProductAvgByCategoryNameHamburger()
+        {
+            return Ok(_productService.TProductAvgByCategoryNameHamburger());
+        }
+
+        [HttpGet("ProductCountByCategoryNameHamburger")]
+        public IActionResult ProductCountByCategoryNameHamburger()
+        {
+            return Ok(_productService.TProductCountByCategoryNameHamburger());
+        }
+
+        [HttpGet("ProductCountByCategoryNameDrink")]
+        public IActionResult ProductCountByCategoryNameDrink()
+        {
+            return Ok(_productService.TProductCountByCategoryNameDrink());
+        }
+        [HttpGet("GetProductWithCategories")]
         public async Task<IActionResult> GetProductWithCategories()
         {
             var datas = await _productService.GetProductsWithCategories();
-            var datasMap= _mapper.Map<List<ResultProductWithGetCategory>>(datas);
+            var datasMap = _mapper.Map<List<ResultProductWithGetCategory>>(datas);
             return Ok(datasMap);
         }
         [HttpDelete("{id}")]

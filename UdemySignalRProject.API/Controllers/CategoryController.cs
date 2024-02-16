@@ -26,6 +26,21 @@ namespace UdemySignalRProject.API.Controllers
             var mapDAta = _mapper.Map<List<ResultCategoryDto>>(values);
             return Ok(mapDAta);
         }
+        [HttpGet("GetCategoryCount")]
+        public IActionResult GetCategoryCount()
+        {
+            return Ok(_categoryService.TCategoryCount());
+        }
+        [HttpGet("GetActiveCategoryCount")]
+        public IActionResult GetActiveCategoryCount()
+        {
+            return Ok(_categoryService.TActiveCategoryCount());
+        }
+        [HttpGet("GetPassiveCount")]
+        public IActionResult GetPassiveCount()
+        {
+            return Ok(_categoryService.TPassiveCategoryCount());
+        }
         [HttpPost]
         public async Task<IActionResult> CreateCategoryAsync(CreateCategoryDto createCategorygDto)
         {

@@ -11,5 +11,8 @@
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
     }
 }
