@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using UdemySignalRProject.API.Hubs;
 using UdemySignalRProject.BusinessLayer.Abstract;
 using UdemySignalRProject.BusinessLayer.Concreate;
 using UdemySignalRProject.BusinessLayer.Mapping;
@@ -14,6 +16,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddCors(opts =>
+{
+
+    opts.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.WithOrigins("https://localhost:7203").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+    });
+});
 
 builder.Services.AddDbContext<SignalRContext>(opts =>
 {
@@ -49,11 +60,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 
 app.UseRouting();
 
 app.UseAuthorization();
 app.MapControllers();
+
+app.MapHub<SignalRHub>("/signalrhub");
 
 app.Run();
