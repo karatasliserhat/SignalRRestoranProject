@@ -20,12 +20,17 @@ namespace UdemySignalRProject.BusinessLayer.Concreate
 
         public decimal TLastOrderPrice()
         {
-            return _context.Orders.OrderByDescending(x=> x.OrderId).Select(x=> x.TotalPrice).FirstOrDefault();
+            return _context.Orders.OrderByDescending(x => x.OrderId).Select(x => x.TotalPrice).FirstOrDefault();
         }
 
         public int TTotalOrderCount()
         {
             return _context.Orders.Count();
+        }
+
+        public decimal TDateNowTotalPrice()
+        {
+            return _context.Orders.Where(x => x.Date==DateTime.Now.Date).Sum(x => x.TotalPrice);
         }
     }
 }

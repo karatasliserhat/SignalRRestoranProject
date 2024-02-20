@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using UdemySignalRProject.EntityLayer.Entities;
 
 namespace UdemySignalRProject.DAL.Concreate
@@ -22,5 +23,17 @@ namespace UdemySignalRProject.DAL.Concreate
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<MoneyCase> MoneyCases { get; set; }
+        public DbSet<MenuTable> MenuTables { get; set; }
+
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(SignalRContext)));
+            base.OnModelCreating(modelBuilder);
+        }
     }
+
+
 }

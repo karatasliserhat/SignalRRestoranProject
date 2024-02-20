@@ -54,6 +54,12 @@ namespace UdemySignalRProject.BusinessLayer.Mapping
             CreateMap<Testimonial, ResultTestimonialDto>().ReverseMap();
             CreateMap<Testimonial, CreateTestimonialDto>().ReverseMap();
             CreateMap<Testimonial, UpdateTestimonialDto>().ReverseMap();
+
+
+            CreateMap<MenuTable, GetMenuTableDto>().ReverseMap();
+            CreateMap<MenuTable, ResultMenuTableDto>().ReverseMap();
+            CreateMap<MenuTable, CreateMenuTableDto>().ReverseMap();
+            CreateMap<MenuTable, UpdateMenuTableDto>().ReverseMap();
         }
     }
 }

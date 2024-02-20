@@ -7,5 +7,6 @@ namespace UdemySignalRProject.BusinessLayer.Abstract
         int TTotalOrderCount();
         int TActiveOrderCount();
         decimal TLastOrderPrice();
+        decimal TDateNowTotalPrice();
     }
 }

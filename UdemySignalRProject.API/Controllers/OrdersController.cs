@@ -32,5 +32,10 @@ namespace UdemySignalRProject.API.Controllers
 
             return Ok(_orderService.TLastOrderPrice());
         }
+        [HttpGet("GetDateNowTotalPrice")]
+        public IActionResult GetDateNowTotalPrice()
+        {
+            return Ok(_orderService.TDateNowTotalPrice());
+        }
     }
 }

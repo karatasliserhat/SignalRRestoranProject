@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemySignalRProject.API", "UdemySignalRProject.API\UdemySignalRProject.API.csproj", "{4E37CBB6-21F5-4D6C-A778-48182ECBBE22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemySignalRProject.API", "UdemySignalRProject.API\UdemySignalRProject.API.csproj", "{4E37CBB6-21F5-4D6C-A778-48182ECBBE22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemySignalRProject.UI", "UdemySignalRProject.UI\UdemySignalRProject.UI.csproj", "{38E65458-AA5C-43D6-A5B9-B004D2CD8B42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemySignalRProject.UI", "UdemySignalRProject.UI\UdemySignalRProject.UI.csproj", "{38E65458-AA5C-43D6-A5B9-B004D2CD8B42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemySignalRProject.EntityLayer", "UdemySignalRProject.EntityLayer\UdemySignalRProject.EntityLayer.csproj", "{52947EB5-BB10-4C67-99AE-A6650C228376}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemySignalRProject.EntityLayer", "UdemySignalRProject.EntityLayer\UdemySignalRProject.EntityLayer.csproj", "{52947EB5-BB10-4C67-99AE-A6650C228376}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemySignalRProject.DAL", "UdemySignalRProject.DAL\UdemySignalRProject.DAL.csproj", "{3FA436ED-A7CA-4849-9B96-9E0D79D9989C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemySignalRProject.DAL", "UdemySignalRProject.DAL\UdemySignalRProject.DAL.csproj", "{3FA436ED-A7CA-4849-9B96-9E0D79D9989C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemySignalRProject.DTO", "UdemySignalRProject.DTO\UdemySignalRProject.DTO.csproj", "{7FD6D6E9-8FC9-453D-9BE3-446B8C381E4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemySignalRProject.DTO", "UdemySignalRProject.DTO\UdemySignalRProject.DTO.csproj", "{7FD6D6E9-8FC9-453D-9BE3-446B8C381E4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemySignalRProject.BusinessLayer", "UdemySignalRProject.BusinessLayer\UdemySignalRProject.BusinessLayer.csproj", "{213466B1-A482-4DA6-95F1-17D365FE8949}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemySignalRProject.BusinessLayer", "UdemySignalRProject.BusinessLayer\UdemySignalRProject.BusinessLayer.csproj", "{213466B1-A482-4DA6-95F1-17D365FE8949}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

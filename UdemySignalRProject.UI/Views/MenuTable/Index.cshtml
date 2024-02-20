@@ -1,0 +1,65 @@
+﻿@model List<ResultMenuTableDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Masa İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Masa Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Masa İle ilgili işlemleri aşağıdan geçerkleştirebilirsiniz.
+                        </div>
+                        <div class="text-end mb-2 my-2">
+                            <a type="submit" asp-controller="MenuTable" asp-action="CreateMenuTable" class="btn btn-outline-info">Yeni Masa</a>
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Masa Adı</th>
+                                    <th scope="col">Durum</th>
+                                    <th scope="col">Sil</th>
+                                    <th scope="col">Güncelle</th>
+                                </tr>
+                            </thead> @if (Model.Count > 0)
+                            {
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <td>@count</td>
+                                            <td>@item.Name</td>
+                                            <td>@(item.Status==true?"Akif":"Pasif")</td>
+                                            <td><a class="btn btn-outline-danger" asp-controller="MenuTable" asp-action="Delete" asp-route-id="@item.DataProtector">Sil</a></td>
+                                            <td><a class="btn btn-outline-warning" asp-controller="MenuTable" asp-action="Update" asp-route-id="@item.DataProtector">Güncelle</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            }
+                            else
+                            {
+                                <tbody>
+                                    <tr class="text-center">
+                                        <td colspan="5">Veri Yok</td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

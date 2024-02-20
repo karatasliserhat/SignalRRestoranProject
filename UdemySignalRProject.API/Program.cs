@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using UdemySignalRProject.API.Hubs;
@@ -47,6 +46,8 @@ builder.Services.AddScoped<ISocialMediaService, SocialMediaManager>();
 builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
+builder.Services.AddScoped<IMoneyCaseService, MoneyCaseService>();
+builder.Services.AddScoped<IMenuTableService, MenutTableService>();
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
