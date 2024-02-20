@@ -1,12 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UdemySignalRProject.UI.IApiServices;
 
 namespace UdemySignalRProject.UI.ViewComponents.DefaultComponents
 {
     public class _UILayoutSliderComponentPartial : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        private readonly ISliderApiService _sliderApiService;
+
+        public _UILayoutSliderComponentPartial(ISliderApiService sliderApiService)
         {
-            return View();
+            _sliderApiService = sliderApiService;
+        }
+
+        public async Task <IViewComponentResult> InvokeAsync()
+        {
+            return View(await _sliderApiService.GetListAsync("Sliders"));
         }
     }
 }

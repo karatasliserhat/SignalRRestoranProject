@@ -2,7 +2,7 @@
 
 namespace UdemySignalRProject.UI.ViewComponents.DefaultComponents
 {
-    public class _UILayoutBookTableComponentPartial:ViewComponent
+    public class _UILayoutBookATableComponentPartial:ViewComponent
     {
         public IViewComponentResult Invoke()
         {
