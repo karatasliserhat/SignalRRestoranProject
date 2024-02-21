@@ -1,12 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UdemySignalRProject.UI.IApiServices;
 
 namespace UdemySignalRProject.UI.ViewComponents.DefaultComponents
 {
-    public class _UILayoutOfferComponentPartial:ViewComponent
+
+    public class _UILayoutOfferComponentPartial : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        private readonly IDiscountApiService _discountApiService;
+        public _UILayoutOfferComponentPartial(IDiscountApiService discountApiService)
         {
-            return View();
+            _discountApiService = discountApiService;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+
+
+            return View(await _discountApiService.GetListAsync("Discount"));
         }
     }
 }

@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UdemySignalRProject.UI.IApiServices;
 
 namespace UdemySignalRProject.UI.ViewComponents.DefaultComponents
 {
-    public class _UILayoutAboutComponentPartial:ViewComponent
+    public class _UILayoutAboutComponentPartial : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        private readonly IAboutApiService _aboutApiService;
+
+        public _UILayoutAboutComponentPartial(IAboutApiService aboutApiService)
         {
-            return View();
+            _aboutApiService = aboutApiService;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+
+            return View(await _aboutApiService.GetListAsync("About"));
         }
     }
 }

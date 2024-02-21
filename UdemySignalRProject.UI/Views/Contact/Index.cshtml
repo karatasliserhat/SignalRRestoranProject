@@ -28,7 +28,11 @@
                                     <th scope="col">Lokasyon</th>
                                     <th scope="col">Telefon Numarası</th>
                                     <th scope="col">Mail Adresi</th>
+                                    <th scope="col">Footer Başlık</th>
                                     <th scope="col">Footer Açıklama</th>
+                                    <th scope="col">Açık Günler Açıklama</th>
+                                    <th scope="col">Açık Günler</th>
+                                    <th scope="col">Açık Saatler</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
                                 </tr>
@@ -45,7 +49,11 @@
                                             <td>@item.Location</td>
                                             <td>@item.PhoneNumber</td>
                                             <td>@item.MailAdress</td>
+                                            <td>@item.FooterTitle</td>
                                             <td>@item.FooterDescription</td>
+                                            <td>@item.OpenDaysDescription</td>
+                                            <td>@item.OpenDays</td>
+                                            <td>@item.OpenHours</td>
                                             <td><a class="btn btn-outline-danger" asp-controller="Contact" asp-action="Delete" asp-route-id="@item.DataProtect">Sil</a></td>
                                             <td><a class="btn btn-outline-warning" asp-controller="Contact" asp-action="Update" asp-route-id="@item.DataProtect">Güncelle</a></td>
                                         </tr>

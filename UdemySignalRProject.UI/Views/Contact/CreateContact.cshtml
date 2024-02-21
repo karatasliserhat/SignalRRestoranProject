@@ -28,10 +28,25 @@
                                 <input type="tel" class="form-control" asp-for="@Model.MailAdress" placeholder="Email Adresi">
                             </div>
                             <div class="form-group">
+                                <label asp-for="@Model.FooterTitle"></label>
+                                <input type="text" class="form-control" asp-for="@Model.FooterTitle" placeholder="Footer Başlık">
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="@Model.FooterDescription"></label>
                                 <textarea class="form-control" cols="5" rows="5" asp-for="@Model.FooterDescription"></textarea>
                             </div>
-
+                            <div class="form-group">
+                                <label asp-for="@Model.OpenDaysDescription"></label>
+                                <input type="text" class="form-control" asp-for="@Model.OpenDaysDescription" placeholder="Açık Günler Başlık">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.OpenDays"></label>
+                                <input type="text" class="form-control" asp-for="@Model.OpenDays" placeholder="Açık Günler">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.OpenHours"></label>
+                                <input type="text" class="form-control" asp-for="@Model.OpenHours" placeholder="Açık Saatler">
+                            </div>
                             <div class="card-action">
                                 <button class="btn btn-success">İletişim Ekle</button>
                             </div>
