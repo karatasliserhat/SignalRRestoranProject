@@ -20,13 +20,13 @@ namespace UdemySignalRProject.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ContactList()
+        public async Task<IActionResult> DiscountList()
         {
             var values = await _discountService.TGetAllAsync();
             return Ok(values);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateContactAsync(CreateDiscountDto createDiscountDto)
+        public async Task<IActionResult> CreateDiscountAsync(CreateDiscountDto createDiscountDto)
         {
             var data = _mapper.Map<Discount>(createDiscountDto);
             await _discountService.TAddAsync(data);
@@ -34,7 +34,7 @@ namespace UdemySignalRProject.API.Controllers
             return Ok("İndirim  Başarılı bir şekilde eklendi");
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteContactAsync(int id)
+        public async Task<IActionResult> DeleteDiscountAsync(int id)
         {
             var value = await _discountService.TGetByIdAsync(id);
 
@@ -42,14 +42,14 @@ namespace UdemySignalRProject.API.Controllers
             return Ok("İndirim  silinmiştir");
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateContactAsync(UpdateDiscountDto updateDiscountDto)
+        public async Task<IActionResult> UpdateDiscountAsync(UpdateDiscountDto updateDiscountDto)
         {
             var data = _mapper.Map<Discount>(updateDiscountDto);
             await _discountService.TUpdateAsync(data);
             return Ok("İndirim  Güncellendi");
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetContactAsync(int id)
+        public async Task<IActionResult> GetDiscountAsync(int id)
         {
 
             return Ok(await _discountService.TGetByIdAsync(id));

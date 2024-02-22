@@ -145,12 +145,13 @@
             $.ajax({
 
                 type: 'post',
-                data: { item: id },
+                data: { ProductId: id},
+                url: "/Menu/AddBasket/" + id,
                 contentType: 'json',
                 success: function () {
 
 
-                    swal("Seçilen Ürün ID: " + id, "Seçiminizi Yaptınız.", "success");
+                    swal("Seçilen Ürün ID: " + id, "Seçtiğiniz Ürün Sepete Eklendi.", "success");
 
                 }
             });

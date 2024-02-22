@@ -49,6 +49,7 @@ builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
 builder.Services.AddScoped<IMoneyCaseService, MoneyCaseService>();
 builder.Services.AddScoped<IMenuTableService, MenutTableService>();
 builder.Services.AddScoped<ISliderService, SliderService>();
+builder.Services.AddScoped<IBasketService, BasketService>();
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 

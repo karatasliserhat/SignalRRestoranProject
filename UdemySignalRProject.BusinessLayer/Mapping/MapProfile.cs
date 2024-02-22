@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using UdemySignalRProject.DTO.BasketDto;
 using UdemySignalRProject.DTO.Dtos;
 using UdemySignalRProject.DTO.Dtos.ProductDto;
 using UdemySignalRProject.EntityLayer.Entities;
@@ -65,6 +66,11 @@ namespace UdemySignalRProject.BusinessLayer.Mapping
             CreateMap<Slider, ResultSlidereDto>().ReverseMap();
             CreateMap<Slider, CreateSliderDto>().ReverseMap();
             CreateMap<Slider, UpdateSliderDto>().ReverseMap();
+
+            CreateMap<Basket, ResultBasketDto>().ReverseMap();
+            CreateMap<Basket, CreateBasketDto>().ReverseMap();
+            CreateMap<Basket, UpdateBasketDto>().ReverseMap();
+            CreateMap<Basket, ResultBasketByMasaTableNameWithProductNameDto>().ForMember(x => x.MenuTableName, y => y.MapFrom(x => x.MenuTable.Name)).ForMember(x => x.ProductName, y => y.MapFrom(x => x.Product.ProductName)).ReverseMap();
         }
     }
 }
