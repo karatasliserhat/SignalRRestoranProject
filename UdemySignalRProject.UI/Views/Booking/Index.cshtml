@@ -1,10 +1,68 @@
-﻿@model List<ResultBookingDto>
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 
     int count = 0;
 }
+
+<script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
+<script src="~/Ready-Bootstrap-Dashboard-master/assets/js/core/jquery.3.2.1.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(() => {
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7224/SignalRHub").build();
+
+        connection.start().then(() => {
+
+            setInterval(() => {
+                connection.invoke("GetBookingList");
+
+            }, 1000);
+        }).catch((err) => {
+            console.log(err)
+        });
+
+
+        connection.on("ReceiveGetBookingAll", (values) => {
+            console.log(values);
+            let tableHtml = `<table class="table mt-3"><thead>
+
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Müşteri Adı</th>
+                                <th scope="col">Telefon</th>
+                                <th scope="col">Mail</th>
+                                <th scope="col">Kişi sayısı</th>
+                                <th scope="col">Tarih</th>
+                                <th scope="col">Rezervasyon Durumu</th>
+                                <th scope="col">Sil</th>
+                                <th scope="col">Güncelle</th>
+                                </tr>
+                                </thead>
+                                <tbody>`
+
+            $.each(values, (index, item) => {
+                tableHtml += `  <tr>
+                                <td>${index + 1}</td>
+                                <td>${item.name}</td>
+                                <td>${item.phone}</td>
+                                <td>${item.mail}</td>
+                                <td>${item.personCount}</td>
+                                <td>${item.date}</td>
+                                <td>${"Rezervasyon Alındı"}</td>
+                                <td><a class="btn btn-outline-danger" href="/Booking/Delete/${item.dataProtect}">Sil</a></td>
+                                <td><a class="btn btn-outline-warning" href="/Booking/Update/${item.dataProtect}">Güncelle</a></td>
+                                </tr>`;
+            });
+            tableHtml += `</tbody></table>`;
+
+            $("#bookingList").html(tableHtml);
+        });
+    });
+
+</script>
 
 <div class="content">
     <div class="container-fluid">
@@ -22,52 +80,9 @@
                         <div class="text-end mb-2 my-2">
                             <a type="submit" asp-controller="Booking" asp-action="CreateBooking" class="btn btn-outline-info">Yeni Rezervasyon</a>
                         </div>
-                        <table class="table mt-3">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Müşteri Adı</th>
-                                    <th scope="col">Telefon</th>
-                                    <th scope="col">Mail</th>
-                                    <th scope="col">Kişi sayısı</th>
-                                    <th scope="col">Tarih</th>
-                                    <th scope="col">Rezervasyon Durumu</th>
-                                    <th scope="col">Sil</th>
-                                    <th scope="col">Güncelle</th>
-                                </tr>
-                            </thead> @if (Model.Count > 0)
-                            {
-                                <tbody>
-
-                                    @foreach (var item in Model)
-                                    {
-                                        count++;
-                                        <tr>
-                                            <td>@count</td>
-                                            <td>@item.Name</td>
-                                            <td>@item.Phone</td>
-                                            <td>@item.Mail</td>
-                                            <td>@item.PersonCount</td>
-                                            <td>@(item.Date.ToShortDateString())</td>
-                                            <td>Rezervasyon Alındı</td>
-                                            <td><a class="btn btn-outline-danger" asp-controller="Booking" asp-action="Delete" asp-route-id="@item.DataProtect">Sil</a></td>
-                                            <td><a class="btn btn-outline-warning" asp-controller="Booking" asp-action="Update" asp-route-id="@item.DataProtect">Güncelle</a></td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            }
-                            else
-                            {
-                                <tbody>
-                                    <tr class="text-center">
-                                        <td colspan="8">Veri Yok</td>
-                                    </tr>
-                                </tbody>
-                            }
-                        </table>
+                        <div id="bookingList"></div>
                     </div>
                 </div>
-
             </div>
 
         </div>

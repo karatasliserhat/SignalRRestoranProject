@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.SignalR;
 using System.Net.WebSockets;
 using UdemySignalRProject.BusinessLayer.Abstract;
+using UdemySignalRProject.DTO.Dtos;
 
 namespace UdemySignalRProject.API.Hubs
 {
@@ -11,13 +14,19 @@ namespace UdemySignalRProject.API.Hubs
         private readonly IOrderService _orderService;
         private readonly IMoneyCaseService _moneyCaseService;
         private readonly IMenuTableService _menuTableService;
-        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService)
+        private readonly IBookingService _bookingService;
+        private readonly IMapper _mapper;
+        private readonly IDataProtector _dataProtector;
+        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService, IMapper mapper, IDataProtectionProvider dataProtector)
         {
             _categoryService = categoryService;
             _productService = productService;
             _orderService = orderService;
             _moneyCaseService = moneyCaseService;
             _menuTableService = menuTableService;
+            _bookingService = bookingService;
+            _mapper = mapper;
+            _dataProtector = dataProtector.CreateProtector("BookingApiController");
         }
 
         public async Task SendCategory()
@@ -77,6 +86,14 @@ namespace UdemySignalRProject.API.Hubs
             var menuTableCount = _menuTableService.TMenuTableCount();
 
             await Clients.All.SendAsync("ReceiveMenuTableCount", menuTableCount);
+        }
+
+        public async Task GetBookingList()
+        {
+            var values = await _bookingService.TGetAllAsync();
+            var mapDatas = _mapper.Map<List<ResultBookingDto>>(values);
+            mapDatas.ForEach(x => x.DataProtect = _dataProtector.Protect(x.BookingId.ToString()));
+            await Clients.All.SendAsync("ReceiveGetBookingAll", mapDatas);
         }
     }
 }

@@ -16,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
+builder.Services.AddDataProtection();
 builder.Services.AddCors(opts =>
 {
 

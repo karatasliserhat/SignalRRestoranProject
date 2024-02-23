@@ -8,20 +8,17 @@ namespace UdemySignalRProject.UI.Controllers
     public class BookingController : Controller
     {
         private readonly IBookingApiService _bookingApiService;
-        private readonly IDataProtector _dataProtector;
 
-        public BookingController(IBookingApiService bookingApiService, IDataProtectionProvider dataProtectionProvider)
+        public BookingController(IBookingApiService bookingApiService)
         {
             _bookingApiService = bookingApiService;
-            _dataProtector = dataProtectionProvider.CreateProtector("BookingController");
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var response = await _bookingApiService.GetListAsync("Booking");
-            response.ForEach(x => { x.DataProtect = _dataProtector.Protect(x.BookingId.ToString()); });
+            //var response = await _bookingApiService.GetListAsync("Booking");
 
-            return View(response);
+            return View();
 
         }
 
@@ -46,9 +43,8 @@ namespace UdemySignalRProject.UI.Controllers
 
         public async Task<IActionResult> Delete(string id)
         {
-            var dataUnprodected = int.Parse(_dataProtector.Unprotect(id));
 
-            var response = await _bookingApiService.DeleteAsync(dataUnprodected, "Booking");
+            var response = await _bookingApiService.DeleteAsync(id, "Booking");
 
             if (response.IsSuccessStatusCode)
             {
@@ -60,8 +56,7 @@ namespace UdemySignalRProject.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(string id)
         {
-            var dataUnprodected = int.Parse(_dataProtector.Unprotect(id));
-            var responseData = await _bookingApiService.UpdateGetByIdAsync(dataUnprodected, "Booking");
+            var responseData = await _bookingApiService.UpdateGetByIdAsync(id, "Booking");
             return View(responseData);
         }
         [HttpPost]

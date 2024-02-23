@@ -21,6 +21,12 @@ namespace UdemySignalRProject.UI.ApiServices
 
             return response;
         }
+        public async Task<List<ResultDto>> GetListAsync(string controllerName,string actionName)
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<ResultDto>>($"{ controllerName}/{actionName}");
+
+            return response;
+        }
         public async Task<HttpResponseMessage> CrateAsync(CreateDto entity, string controllerName)
         {
             var response = await _httpClient.PostAsJsonAsync<CreateDto>(controllerName, entity);
@@ -32,10 +38,16 @@ namespace UdemySignalRProject.UI.ApiServices
             var response = await _httpClient.DeleteAsync($"{controllerName}/{id}");
             return response;
         }
-
-        public Task<ResultDto> GetByIdAsync(int id, string controllerName)
+        public async Task<HttpResponseMessage> DeleteAsync(string id, string controllerName)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.DeleteAsync($"{controllerName}/{id}");
+            return response;
+        }
+        public async Task<ResultDto> GetByIdAsync(int id, string controllerName)
+        {
+            var response = await _httpClient.GetFromJsonAsync<ResultDto>($"{controllerName}/{id}");
+
+            return response;
         }
 
 
@@ -47,6 +59,12 @@ namespace UdemySignalRProject.UI.ApiServices
         }
 
         public async Task<UpdateDto> UpdateGetByIdAsync(int id, string controllerName)
+        {
+            var response = await _httpClient.GetFromJsonAsync<UpdateDto>($"{controllerName}/{id}");
+
+            return response;
+        }
+        public async Task<UpdateDto> UpdateGetByIdAsync(string id, string controllerName)
         {
             var response = await _httpClient.GetFromJsonAsync<UpdateDto>($"{controllerName}/{id}");
 
