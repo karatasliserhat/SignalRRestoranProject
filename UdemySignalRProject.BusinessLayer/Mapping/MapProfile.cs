@@ -61,7 +61,7 @@ namespace UdemySignalRProject.BusinessLayer.Mapping
             CreateMap<MenuTable, ResultMenuTableDto>().ReverseMap();
             CreateMap<MenuTable, CreateMenuTableDto>().ReverseMap();
             CreateMap<MenuTable, UpdateMenuTableDto>().ReverseMap();
-            
+
             CreateMap<Slider, GetSliderDto>().ReverseMap();
             CreateMap<Slider, ResultSlidereDto>().ReverseMap();
             CreateMap<Slider, CreateSliderDto>().ReverseMap();
@@ -71,6 +71,11 @@ namespace UdemySignalRProject.BusinessLayer.Mapping
             CreateMap<Basket, CreateBasketDto>().ReverseMap();
             CreateMap<Basket, UpdateBasketDto>().ReverseMap();
             CreateMap<Basket, ResultBasketByMasaTableNameWithProductNameDto>().ForMember(x => x.MenuTableName, y => y.MapFrom(x => x.MenuTable.Name)).ForMember(x => x.ProductName, y => y.MapFrom(x => x.Product.ProductName)).ReverseMap();
+
+            CreateMap<Notification, GetNotificationDto>().ReverseMap();
+            CreateMap<Notification, ResultNotificationDto>().ReverseMap();
+            CreateMap<Notification, CreateNotificationDto>().ReverseMap();
+            CreateMap<Notification, UpdateNotificationDto>().ReverseMap();
         }
     }
 }

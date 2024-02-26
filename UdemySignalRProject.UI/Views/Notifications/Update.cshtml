@@ -1,0 +1,52 @@
+﻿@model UpdateNotificationDto
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Bildirim İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Bildirim Güncelleme Formu</div>
+                    </div>
+                    <form asp-action="Update" asp-controller="Notifications" method="post">
+                        <input type="hidden" asp-for="@Model.NotificationId" />
+                        <div class="card-body">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label asp-for="@Model.Type"></label>
+                                    <input type="text" class="form-control" asp-for="@Model.Type" placeholder="Başlık yazınız">
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Description"></label>
+                                    <input type="text" class="form-control" asp-for="@Model.Description" placeholder="Açıklama">
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Date"></label>
+                                    <input type="date" class="form-control" asp-for="@Model.Date">
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Icon"></label>
+                                    <input type="text" class="form-control" asp-for="@Model.Icon" placeholder="İcon Giriniz">
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Status"></label>
+                                    <select class="form-control" asp-for="@Model.Status" asp-items="@ViewBag.TFList">
+                                    </select>
+                                </div>
+                                <div class="card-action">
+                                    <button class="btn btn-success">Bildirim Güncelle</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

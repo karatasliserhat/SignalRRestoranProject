@@ -1,4 +1,52 @@
-﻿<div class="logo-header">
+﻿
+
+<script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
+<script src="~/Ready-Bootstrap-Dashboard-master/assets/js/core/jquery.3.2.1.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(() => {
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7224/SignalRHub").build();
+
+        connection.start().then(() => {
+
+            setInterval(() => {
+                connection.invoke("SendNotification");
+            }, 1000)
+        }).catch((err) => {
+
+            console.log(err);
+        });
+
+        connection.on("ReceiveNotificationCountStatusfalse", (value) => {
+
+            $("#notificationCountStatusFalse").text(value);
+            $("#notificationCountStatusFalse2").text(value + ' ' + 'Yeni Bildirim Var');
+        });
+        connection.on("ReceiveGetNotificationStatusFalseList", (values) => {
+
+            console.log(values);
+
+            $("#notificationList").empty();
+            for (var i = 0; i < values.length; i++) {
+                $("#notificationList").append(`<a href="#">
+                        <div class="${values[i].type}"> <i class="${values[i].icon}"></i> </div>
+                         <div class="notif-content">
+                        <span class="block">
+                            ${values[i].description}
+                        </span>
+                        <span class="time">${values[i].date}</span>
+                        </div>
+                        </a>`)
+            };
+
+        });
+    });
+
+</script>
+
+<div class="logo-header">
     <a href="index.html" class="logo">
         SignalR Admin
     </a>
@@ -35,52 +83,15 @@
             <li class="nav-item dropdown hidden-caret">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="la la-bell"></i>
-                    <span class="notification">3</span>
+                    <span class="notification" id="notificationCountStatusFalse"></span>
                 </a>
                 <ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
                     <li>
-                        <div class="dropdown-title">4 Yeni Bildirim Var</div>
+                        <div class="dropdown-title" id="notificationCountStatusFalse2"></div>
                     </li>
                     <li>
                         <div class="notif-center">
-                            <a href="#">
-                                <div class="notif-icon notif-primary"> <i class="la la-user-plus"></i> </div>
-                                <div class="notif-content">
-                                    <span class="block">
-                                        New user registered
-                                    </span>
-                                    <span class="time">5 minutes ago</span>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
-                                <div class="notif-content">
-                                    <span class="block">
-                                        Rahmad commented on Admin
-                                    </span>
-                                    <span class="time">12 minutes ago</span>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="notif-img">
-                                    <img src="~/Ready-Bootstrap-Dashboard-master/assets/img/profile2.jpg" alt="Img Profile">
-                                </div>
-                                <div class="notif-content">
-                                    <span class="block">
-                                        Reza send messages to you
-                                    </span>
-                                    <span class="time">12 minutes ago</span>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="notif-icon notif-danger"> <i class="la la-heart"></i> </div>
-                                <div class="notif-content">
-                                    <span class="block">
-                                        Farrah liked Admin
-                                    </span>
-                                    <span class="time">17 minutes ago</span>
-                                </div>
-                            </a>
+                            <div id="notificationList"></div>
                         </div>
                     </li>
                     <li>

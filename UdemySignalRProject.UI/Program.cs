@@ -18,6 +18,7 @@ builder.Services.AddScoped<ITestimonialApiService, TestimonialApiService>();
 builder.Services.AddScoped<IMenuTableApiService, MenuTableApiService>();
 builder.Services.AddScoped<ISliderApiService, SliderApiService>();
 builder.Services.AddScoped<IBasketApiService, BasketApiService>();
+builder.Services.AddScoped<INotificationApiService, NotificationApiService>();
 
 builder.Services.AddHttpClient<ICategoryApiService, CategoryApiService>(opts =>
 {
@@ -66,6 +67,10 @@ builder.Services.AddHttpClient<ISliderApiService, SliderApiService>(opts => {
     opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
 });
 builder.Services.AddHttpClient<IBasketApiService, BasketApiService>(opts => {
+
+    opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+builder.Services.AddHttpClient<INotificationApiService, NotificationApiService>(opts => {
 
     opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
 });

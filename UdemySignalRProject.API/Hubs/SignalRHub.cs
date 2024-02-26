@@ -17,7 +17,9 @@ namespace UdemySignalRProject.API.Hubs
         private readonly IBookingService _bookingService;
         private readonly IMapper _mapper;
         private readonly IDataProtector _dataProtector;
-        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService, IMapper mapper, IDataProtectionProvider dataProtector)
+
+        private readonly INotificationService _notificationService;
+        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService, IMapper mapper, IDataProtectionProvider dataProtector, INotificationService notificationService)
         {
             _categoryService = categoryService;
             _productService = productService;
@@ -27,6 +29,7 @@ namespace UdemySignalRProject.API.Hubs
             _bookingService = bookingService;
             _mapper = mapper;
             _dataProtector = dataProtector.CreateProtector("BookingApiController");
+            _notificationService = notificationService;
         }
 
         public async Task SendCategory()
@@ -94,6 +97,16 @@ namespace UdemySignalRProject.API.Hubs
             var mapDatas = _mapper.Map<List<ResultBookingDto>>(values);
             mapDatas.ForEach(x => x.DataProtect = _dataProtector.Protect(x.BookingId.ToString()));
             await Clients.All.SendAsync("ReceiveGetBookingAll", mapDatas);
+        }
+
+        public async Task SendNotification()
+        {
+            var notificationList = await _notificationService.TGetAllAsync();
+            var notificationCountStatusfalse = _notificationService.NotificationCountByStatusfalse();
+            var notificationStatusFalseList = _notificationService.GetNotificationStatusFalseList();
+            await Clients.All.SendAsync("ReceiveNotificationList", notificationList);
+            await Clients.All.SendAsync("ReceiveNotificationCountStatusfalse", notificationCountStatusfalse);
+            await Clients.All.SendAsync("ReceiveGetNotificationStatusFalseList", notificationStatusFalseList);
         }
     }
 }
