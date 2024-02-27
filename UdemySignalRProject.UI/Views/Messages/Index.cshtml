@@ -1,0 +1,72 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+@await Component.InvokeAsync("_UILayoutHeadComponentPartial")
+
+<body class="sub_page">
+
+    @await Component.InvokeAsync("_MenuNavbarComponentPartial")
+
+    <!-- food section -->
+
+    <section class="food_section layout_padding">
+        <div class="container">
+
+            <div class="container-mt-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="text-center mb-4">Restoran Anlık Mesajlaşlama</h3>
+                    </div>
+                </div>
+                <div class="row p-1">
+                    <div class="col-2">Kullanıcı Adınız:</div>
+                    <div class="col-5">
+                        <input type="text" id="userInput" class="form-control" />
+                    </div>
+                </div>
+                <div class="row p-1">
+                    <div class="col-2">Mesajınız:</div>
+                    <div class="col-5">
+                        <input type="text" class="form-control" id="messageInput" />
+                    </div>
+                </div>
+                <div class="row p-1">
+                    <div class="col-2">
+                        <div class="col-3">
+                            <input type="button" id="sendButton" value="Mesaj Gönder" class="btn btn-warning" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row p-1">
+                    <div class="col-12">
+                        <hr />
+                    </div>
+                </div>
+
+                <div class="row p-1">
+                    <div class="col-12">
+                        <ul id="messageList" class="list-group"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- end food section -->
+    <!-- footer section -->
+    @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
+
+    <!-- footer section -->
+
+    @await Component.InvokeAsync("_UILayoutScriptComponentPartial");
+
+    <script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/Ready-Bootstrap-Dashboard-master/assets/js/core/jquery.3.2.1.min.js"></script>
+    <script src="~/js/chat.js"></script>
+</body>
+
+</html>

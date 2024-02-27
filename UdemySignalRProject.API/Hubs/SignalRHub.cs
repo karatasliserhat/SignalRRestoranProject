@@ -112,5 +112,10 @@ namespace UdemySignalRProject.API.Hubs
             await Clients.All.SendAsync("ReceiveNotificationCountStatusfalse", notificationCountStatusfalse);
             await Clients.All.SendAsync("ReceiveGetNotificationStatusFalseList", notificationStatusFalseList);
         }
+
+        public async Task SendMessage(string user, string message)
+        {
+            await Clients.All.SendAsync("ReceiveMessage", user, message);
+        }
     }
 }
