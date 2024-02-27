@@ -83,5 +83,11 @@ namespace UdemySignalRProject.UI.Controllers
             return View();
 
         }
+
+        public async Task<IActionResult> MenuTableListByStatus()
+        {
+            var datas = await _menuTableApiService.GetListAsync("MenuTables");
+            return View(datas);
+        }
     }
 }

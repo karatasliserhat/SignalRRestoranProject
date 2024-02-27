@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewData["Title"] = "MenuTableListButton";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
+<script src="~/Ready-Bootstrap-Dashboard-master/assets/js/core/jquery.3.2.1.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(() => {
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7224/SignalRHub").build();
+
+        connection.start().then(() => {
+
+            setInterval(() => {
+
+                connection.invoke("SendMenuTables");
+
+            }, 1000);
+
+        }).catch((err) => {
+            console.log(err);
+        });
+
+        connection.on("ReceiveMenuTablesListByStatus", (values) => {
+
+            console.log(values);
+
+
+            $("#masaTablesListByStatus").empty();
+            let color = "";
+            let status = "";
+            let tableHtml = `<div class="row">`;
+
+            $.each(values, (index, item) => {
+
+                if (item.status == true) {
+                    color = "danger";
+                    status = "Dolu Masa";
+                } else {
+                    color = "success";
+                    status = "Boş Masa";
+                }
+
+                tableHtml += `<div class="col-md-3">
+    <div class="card card-stats card-${color}">
+        <div class="card-body ">
+            <div class="row">
+                <div class="col-5">
+                    <div class="icon-big text-center">
+                        <i class="la la-table"></i>
+                    </div>
+                </div>
+                <div class="col-7 d-flex align-items-center">
+                    <div class="numbers">
+                        <p class="card-category">${item.name}</p>
+                        <h4 class="card-title">${status}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>`
+
+
+            });
+            tableHtml += `</div>`;
+
+            $("#masaTablesListByStatus").html(tableHtml);
+
+        });
+    });
+
+</script>
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Masa Durumları Sayfası</h4>
+        <div id="masaTablesListByStatus">
+
+        </div>
+
+    </div>
+</div>
+
+

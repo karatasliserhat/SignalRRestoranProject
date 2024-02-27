@@ -88,7 +88,11 @@ namespace UdemySignalRProject.API.Hubs
         {
             var menuTableCount = _menuTableService.TMenuTableCount();
 
+            var menuTablesListByStatus = await _menuTableService.TGetAllAsync();
+
             await Clients.All.SendAsync("ReceiveMenuTableCount", menuTableCount);
+
+            await Clients.All.SendAsync("ReceiveMenuTablesListByStatus", menuTablesListByStatus);
         }
 
         public async Task GetBookingList()
