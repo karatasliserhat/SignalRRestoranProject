@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using UdemySignalRProject.EntityLayer.Entities;
 
 namespace UdemySignalRProject.DAL.Concreate
 {
-    public class SignalRContext : DbContext
+    public class SignalRContext : IdentityDbContext<AppUser, AppRole, int>
     {
         public SignalRContext(DbContextOptions<SignalRContext> options) : base(options)
         {

@@ -1,4 +1,4 @@
-﻿namespace UdemySignalRProject.DTO.Dtos.ProductDto
+﻿namespace UdemySignalRProject.DTO.Dtos
 {
     public class ResultProductWithGetCategory:GetProductDto
     {

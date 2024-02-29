@@ -7,6 +7,7 @@ using UdemySignalRProject.BusinessLayer.Mapping;
 using UdemySignalRProject.DAL.Abstract;
 using UdemySignalRProject.DAL.Concreate;
 using UdemySignalRProject.DAL.Repositories;
+using UdemySignalRProject.EntityLayer.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,10 @@ builder.Services.AddDbContext<SignalRContext>(opts =>
         conf.MigrationsAssembly(Assembly.GetAssembly(typeof(SignalRContext)).GetName().Name);
     });
 });
+
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<SignalRContext>();
+
+
 builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IAboutService, AboutManager>();
 builder.Services.AddScoped<IBookingService, BookingManager>();
@@ -52,7 +57,7 @@ builder.Services.AddScoped<IMenuTableService, MenutTableService>();
 builder.Services.AddScoped<ISliderService, SliderService>();
 builder.Services.AddScoped<IBasketService, BasketService>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
-
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 

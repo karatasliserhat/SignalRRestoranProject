@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using UdemySignalRProject.BusinessLayer.Abstract;
 using UdemySignalRProject.DTO.Dtos;
-using UdemySignalRProject.DTO.Dtos.ProductDto;
 using UdemySignalRProject.EntityLayer.Entities;
 
 namespace UdemySignalRProject.API.Controllers

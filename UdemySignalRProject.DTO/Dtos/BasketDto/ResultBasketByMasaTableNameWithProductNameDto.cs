@@ -1,6 +1,4 @@
-﻿using UdemySignalRProject.DTO.Dtos;
-
-namespace UdemySignalRProject.DTO.BasketDto
+﻿namespace UdemySignalRProject.DTO.Dtos
 {
     public class ResultBasketByMasaTableNameWithProductNameDto:ResultBasketDto
     {

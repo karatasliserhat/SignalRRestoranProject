@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using UdemySignalRProject.DTO.BasketDto;
 using UdemySignalRProject.DTO.Dtos;
-using UdemySignalRProject.DTO.Dtos.ProductDto;
 using UdemySignalRProject.EntityLayer.Entities;
 
 namespace UdemySignalRProject.BusinessLayer.Mapping
@@ -76,6 +74,9 @@ namespace UdemySignalRProject.BusinessLayer.Mapping
             CreateMap<Notification, ResultNotificationDto>().ReverseMap();
             CreateMap<Notification, CreateNotificationDto>().ReverseMap();
             CreateMap<Notification, UpdateNotificationDto>().ReverseMap();
+
+
+            CreateMap<AppUser, RegisterDto>().ReverseMap();
         }
     }
 }
