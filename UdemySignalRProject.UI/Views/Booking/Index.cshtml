@@ -34,25 +34,27 @@
                                 <th scope="col">Telefon</th>
                                 <th scope="col">Mail</th>
                                 <th scope="col">Kişi sayısı</th>
-                                <th scope="col">Tarih</th>
                                 <th scope="col">Rezervasyon Durumu</th>
                                 <th scope="col">Sil</th>
                                 <th scope="col">Güncelle</th>
+                                <th scope="col">Onayla</th>
+                                <th scope="col">İptal Et</th>
                                 </tr>
                                 </thead>
                                 <tbody>`
 
             $.each(values, (index, item) => {
                 tableHtml += `  <tr>
-                                <td>${index + 1}</td>
+                                <th>${index + 1}</th>
                                 <td>${item.name}</td>
                                 <td>${item.phone}</td>
                                 <td>${item.mail}</td>
                                 <td>${item.personCount}</td>
-                                <td>${item.date}</td>
-                                <td>${"Rezervasyon Alındı"}</td>
+                                <td>${item.description}</td>
                                 <td><a class="btn btn-outline-danger" href="/Booking/Delete/${item.dataProtect}">Sil</a></td>
                                 <td><a class="btn btn-outline-warning" href="/Booking/Update/${item.dataProtect}">Güncelle</a></td>
+                                <td><a class="btn btn-outline-info" href="/Booking/BookingStatusApproved/${item.dataProtect}">Onayla</a></td>
+                                <td><a class="btn btn-outline-dark" href="/Booking/BookingStatusCancelled/${item.dataProtect}">İptal</a></td>
                                 </tr>`;
             });
             tableHtml += `</tbody></table>`;

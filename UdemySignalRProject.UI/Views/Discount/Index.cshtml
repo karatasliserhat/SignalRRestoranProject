@@ -31,7 +31,7 @@
                                     <th scope="col">Açıklama</th>
                                     <th scope="col">Resim</th>
                                     <th scope="col">Durum</th>
-                                    <th scope="col">Durum Değiştir</th>
+                                    <th scope="col">Aktif/Pasif</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
                                 </tr>
@@ -49,8 +49,15 @@
                                             <td>@item.Amaount</td>
                                             <td>@item.Description</td>
                                             <td>@item.ImageUrl</td>
-                                            <td>Aktif</td>
-                                            <td><a class="btn btn-outline-primary" asp-controller="Discount" asp-action="StatusChange" asp-route-id="@item.DataProtect">Durum Değiştir</a></td>
+                                            <td>@(item.Status==true?"Aktif":"Pasif")</td>
+                                            @if (item.Status is true)
+                                            {
+                                                <td><a class="btn btn-outline-dark" asp-controller="Discount" asp-action="DiscountChangeStatusFalse" asp-route-id="@item.DataProtect">Pasif Yap</a></td>
+                                            }
+                                            else
+                                            {
+                                                <td><a class="btn btn-outline-info" asp-controller="Discount" asp-action="DiscountChangeStatusTrue" asp-route-id="@item.DataProtect">Aktif Yap</a></td>
+                                            }
                                             <td><a class="btn btn-outline-danger" asp-controller="Discount" asp-action="Delete" asp-route-id="@item.DataProtect">Sil</a></td>
                                             <td><a class="btn btn-outline-warning" asp-controller="Discount" asp-action="Update" asp-route-id="@item.DataProtect">Güncelle</a></td>
                                         </tr>

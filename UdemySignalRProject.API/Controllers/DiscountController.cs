@@ -54,5 +54,28 @@ namespace UdemySignalRProject.API.Controllers
 
             return Ok(await _discountService.TGetByIdAsync(id));
         }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> DiscountChangeStatusTrue(int id)
+        {
+            await _discountService.ChangeStautusTrue(id);
+            return Ok("İndirim Aktif Edildi");
+        }
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> DiscountChangeStatusFalse(int id)
+        {
+
+            await _discountService.ChangeStautusFalse(id);
+            return Ok("İndirim Pasif Edildi");
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> DiscountListStatusTrue()
+        {
+
+            var dataMap = _mapper.Map<List<ResultDiscountDto>>(await _discountService.StatusTrueList());
+            return Ok(dataMap);
+        }
+
+
     }
 }

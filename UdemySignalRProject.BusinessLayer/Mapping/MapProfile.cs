@@ -33,11 +33,6 @@ namespace UdemySignalRProject.BusinessLayer.Mapping
             CreateMap<Discount, CreateDiscountDto>().ReverseMap();
             CreateMap<Discount, UpdateDiscountDto>().ReverseMap();
 
-            CreateMap<Feature, GetFeatureDto>().ReverseMap();
-            CreateMap<Feature, ResultFeatureDto>().ReverseMap();
-            CreateMap<Feature, CreateFeatureDto>().ReverseMap();
-            CreateMap<Feature, UpdateFeatureDto>().ReverseMap();
-
             CreateMap<Product, GetProductDto>().ReverseMap();
             CreateMap<Product, ResultProductDto>().ReverseMap();
             CreateMap<Product, CreateProductDto>().ReverseMap();

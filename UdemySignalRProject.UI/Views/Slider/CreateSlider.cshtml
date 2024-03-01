@@ -1,4 +1,4 @@
-﻿@model CreateFeatureDto
+﻿@model CreateSliderDto
 @{
     ViewData["Title"] = "CreateFeature";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -13,35 +13,35 @@
                     <div class="card-header">
                         <div class="card-title">Öne Çıkan Alan Ekleme Formu</div>
                     </div>
-                    <form asp-action="CreateFeature" asp-controller="Feature" method="post">
+                    <form asp-action="CreateSlider" asp-controller="Slider" method="post">
                         <div class="card-body">
                             <div class="form-group">
+                                <label asp-for="@Model.Title"></label>
+                                <input type="text" class="form-control" asp-for="@Model.Title" placeholder="1. Başlığı Giriniz">
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="@Model.Title1"></label>
-                                <input type="text" class="form-control" asp-for="@Model.Title1" placeholder="1. Başlığı Giriniz">
+                                <input type="text" class="form-control" asp-for="@Model.Title1" placeholder="2. Başlığı Giriniz">
                             </div>
                             <div class="form-group">
                                 <label asp-for="@Model.Title2"></label>
-                                <input type="text" class="form-control" asp-for="@Model.Title2" placeholder="2. Başlığı Giriniz">
+                                <input type="text" class="form-control" asp-for="@Model.Title2" placeholder="3. Başlığı Giriniz">
                             </div>
                             <div class="form-group">
-                                <label asp-for="@Model.Title3"></label>
-                                <input type="text" class="form-control" asp-for="@Model.Title3" placeholder="3. Başlığı Giriniz">
+                                <label asp-for="@Model.Description"></label>
+                                <input type="text" class="form-control" asp-for="@Model.Description" placeholder="1. Açıklama Yazınız">
                             </div>
                             <div class="form-group">
                                 <label asp-for="@Model.Description1"></label>
-                                <input type="text" class="form-control" asp-for="@Model.Description1" placeholder="1. Açıklama Yazınız">
+                                <input type="text" class="form-control" asp-for="@Model.Description1" placeholder="2. Açıklama Yazınız">
                             </div>
                             <div class="form-group">
                                 <label asp-for="@Model.Description2"></label>
-                                <input type="text" class="form-control" asp-for="@Model.Description2" placeholder="2. Açıklama Yazınız">
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="@Model.Description3"></label>
-                                <input type="text" class="form-control" asp-for="@Model.Description3" placeholder="3. Açıklama Yazınız">
+                                <input type="text" class="form-control" asp-for="@Model.Description2" placeholder="3. Açıklama Yazınız">
                             </div>
                             
                             <div class="card-action">
-                                <button class="btn btn-success">Feature Ekle</button>
+                                <button class="btn btn-success">Ekle</button>
                             </div>
                         </div>
                     </form>

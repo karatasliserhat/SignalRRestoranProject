@@ -78,5 +78,31 @@ namespace UdemySignalRProject.UI.Controllers
             return View();
 
         }
+
+        public async Task<IActionResult> DiscountChangeStatusTrue(string id)
+        {
+            var dataUnprodected = int.Parse(_dataProtector.Unprotect(id));
+
+            var response = await _discountApiService.ChangeStatusTrue("Discount", "DiscountChangeStatusTrue", dataUnprodected);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> DiscountChangeStatusFalse(string id)
+        {
+            var dataUnprodected = int.Parse(_dataProtector.Unprotect(id));
+
+            var response = await _discountApiService.ChangeStatusFalse("Discount", "DiscountChangeStatusFalse", dataUnprodected);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
     }
 }

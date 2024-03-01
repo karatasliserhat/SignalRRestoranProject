@@ -59,6 +59,20 @@ namespace UdemySignalRProject.API.Controllers
             var valueId = int.Parse(_dataProtector.Unprotect(id));
             return Ok(await _bookingService.TGetByIdAsync(valueId));
         }
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> BookingStatusApproved(string id)
+        {
+            var valueId = int.Parse(_dataProtector.Unprotect(id));
+            await _bookingService.BookingStatusApproved(valueId);
+            return Ok("Rezervasyon Onaylandı");
+        }
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> BookingStatusCancelled(string id)
+        {
+            var valueId = int.Parse(_dataProtector.Unprotect(id));
+            await _bookingService.BokingStatusCancelled(valueId);
+            return Ok("Rezervasyon İptal Edildi");
+        }
     }
 
 }

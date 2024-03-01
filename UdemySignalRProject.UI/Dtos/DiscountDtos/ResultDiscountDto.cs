@@ -8,5 +8,7 @@
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public string DataProtect { get; set; }
+        public bool Status { get; set; }
+
     }
 }

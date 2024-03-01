@@ -5,36 +5,36 @@ using UdemySignalRProject.UI.IApiServices;
 
 namespace UdemySignalRProject.UI.Controllers
 {
-    public class FeatureController : Controller
+    public class SliderController : Controller
     {
 
-        private readonly IFeatureApiService _featureApiService;
+        private readonly ISliderApiService _sliderApiService;
         private readonly IDataProtector _dataProtector;
 
-        public FeatureController(IFeatureApiService featureApiService, IDataProtectionProvider dataProtectionProvider)
+        public SliderController(ISliderApiService sliderApiService, IDataProtectionProvider dataProtectionProvider)
         {
-            _featureApiService = featureApiService;
-            _dataProtector = dataProtectionProvider.CreateProtector("FeatureController");
+            _sliderApiService = sliderApiService;
+            _dataProtector = dataProtectionProvider.CreateProtector("SliderController");
         }
 
         public async Task<IActionResult> Index()
         {
-            var response = await _featureApiService.GetListAsync("Feature");
-            response.ForEach(x => { x.DataProtect = _dataProtector.Protect(x.FeatureId.ToString()); });
+            var response = await _sliderApiService.GetListAsync("Sliders");
+            response.ForEach(x => { x.DataProtector = _dataProtector.Protect(x.SliderId.ToString()); });
 
             return View(response);
         }
 
         [HttpGet]
-        public IActionResult CreateFeature()
+        public IActionResult CreateSlider()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateFeature(CreateFeatureDto createFeatureDto)
+        public async Task<IActionResult> CreateSlider(CreateSliderDto createSliderDto)
         {
 
-            var responseMessage = await _featureApiService.CrateAsync(createFeatureDto, "Feature");
+            var responseMessage = await _sliderApiService.CrateAsync(createSliderDto, "Sliders");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction(nameof(Index));
@@ -49,7 +49,7 @@ namespace UdemySignalRProject.UI.Controllers
         {
             var dataUnprodected = int.Parse(_dataProtector.Unprotect(id));
 
-            var response = await _featureApiService.DeleteAsync(dataUnprodected, "Feature");
+            var response = await _sliderApiService.DeleteAsync(dataUnprodected, "Sliders");
 
             if (response.IsSuccessStatusCode)
             {
@@ -62,13 +62,13 @@ namespace UdemySignalRProject.UI.Controllers
         public async Task<IActionResult> Update(string id)
         {
             var dataUnprodected = int.Parse(_dataProtector.Unprotect(id));
-            var responseData = await _featureApiService.UpdateGetByIdAsync(dataUnprodected, "Feature");
+            var responseData = await _sliderApiService.UpdateGetByIdAsync(dataUnprodected, "Sliders");
             return View(responseData);
         }
         [HttpPost]
-        public async Task<IActionResult> Update(UpdateFeatureDto updateFeatureDto)
+        public async Task<IActionResult> Update(UpdateSliderDto updateSliderDto)
         {
-            var responseMessage = await _featureApiService.UpdateAsync(updateFeatureDto, "Feature");
+            var responseMessage = await _sliderApiService.UpdateAsync(updateSliderDto, "Sliders");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction(nameof(Index));

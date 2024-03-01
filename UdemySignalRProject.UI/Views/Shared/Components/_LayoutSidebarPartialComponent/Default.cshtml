@@ -17,18 +17,18 @@
                 <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
                     <ul class="nav">
                         <li>
-                            <a href="#profile">
+                            <a asp-controller="Menu" asp-action="Index">
                                 <span class="link-collapse">Menüyü Gör</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#edit">
-                                <span class="link-collapse">Şifre Güncelle</span>
+                            <a asp-controller="Register" asp-action="Index">
+                                <span class="link-collapse">Yeni Kayıt</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#settings">
-                                <span class="link-collapse">Ayarlar</span>
+                            <a asp-controller="Login" asp-action="Index">
+                                <span class="link-collapse">Giriş Yap</span>
                             </a>
                         </li>
                     </ul>
@@ -37,17 +37,21 @@
         </div>
         <ul class="nav">
             <li class="nav-item">
-                <a href="index.html">
-                    <i class="la la-dashboard"></i>
-                    <p>Dashboard</p>
-                    <span class="badge badge-count">5</span>
+                <a asp-controller="Default" asp-action="Index" target="_blank">
+                    <i class="la la-motorcycle"></i>
+                    <p>Siteye Git</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="components.html">
-                    <i class="la la-table"></i>
+                <a href="index.html">
+                    <i class="la la-dashboard"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Menu" asp-action="Index">
+                    <i class="la la-music"></i>
                     <p>Menüyü Gör</p>
-                    <span class="badge badge-count">14</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -58,7 +62,7 @@
             </li>
             <li class="nav-item active">
                 <a asp-controller="Product" asp-action="Index">
-                    <i class="la la-th"></i>
+                    <i class="la la-birthday-cake"></i>
                     <p>Ürünler</p>
                 </a>
             </li>
@@ -76,67 +80,79 @@
             </li>
             <li class="nav-item">
                 <a asp-action="Index" asp-controller="Contact">
-                    <i class="la la-font"></i>
+                    <i class="la la-phone-square"></i>
                     <p>İletişim</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="icons.html">
-                    <i class="la la-fonticons"></i>
-                    <p>Mesajlar</p>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a asp-controller="Discount" asp-action="Index">
-                    <i class="la la-fonticons"></i>
+                    <i class="la la-money"></i>
                     <p>İndirimler</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a asp-controller="Feature" asp-action="Index">
-                    <i class="la la-fonticons"></i>
+                <a asp-controller="Slider" asp-action="Index">
+                    <i class="la la-gamepad"></i>
                     <p>Öne Çıkanlar</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a asp-controller="SocialMedia" asp-action="Index">
-                    <i class="la la-fonticons"></i>
+                    <i class="la la-map-marker"></i>
                     <p>Sosyal Medya</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a asp-controller="Testimonial" asp-action="Index">
-                    <i class="la la-fonticons"></i>
+                    <i class="la la-group"></i>
                     <p>Referanslar</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a asp-action="Index" asp-controller="Statistic">
-                    <i class="la la-fonticons"></i>
+                    <i class="la la-pie-chart"></i>
                     <p>İstatistikler</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a asp-action="Index" asp-controller="Notifications">
-                    <i class="la la-bell"></i>
+                    <i class="la la-umbrella"></i>
                     <p>Bildirimler</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a asp-action="Index" asp-controller="MenuTable">
-                    <i class="la la-fonticons"></i>
+                    <i class="la la-table"></i>
                     <p>Masalar</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="icons.html">
-                    <i class="la la-fonticons"></i>
+                <a asp-action="MenuTableListByStatus" asp-controller="MenuTable">
+                    <i class="la la-ship"></i>
+                    <p>Masa Durumları</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-action="Index" asp-controller="Messages">
+                    <i class="la la-wechat"></i>
+                    <p>Mesaj Sayfası</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="ProgressBars" asp-action="Index">
+                    <i class="la la-bar-chart"></i>
+                    <p>Anlık Durum Çubuğu</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Settings" asp-action="Index">
+                    <i class="la la-chain"></i>
                     <p>Ayarlar</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="icons.html">
-                    <i class="la la-fonticons"></i>
+                <a asp-controller="Login" asp-action="LogOut">
+                    <i class="la la-close"></i>
                     <p>Çıkış Yap</p>
                 </a>
             </li>

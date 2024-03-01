@@ -16,7 +16,7 @@ namespace UdemySignalRProject.UI.ViewComponents.DefaultComponents
         {
 
 
-            return View(await _discountApiService.GetListAsync("Discount"));
+            return View(await _discountApiService.GetListStatusTrue("Discount", "DiscountListStatusTrue"));
         }
     }
 }

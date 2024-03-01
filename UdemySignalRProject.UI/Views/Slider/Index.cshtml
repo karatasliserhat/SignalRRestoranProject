@@ -1,4 +1,4 @@
-﻿@model List<ResultFeatureDto>
+﻿@model List<ResultSlidereDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -17,10 +17,10 @@
                     </div>
                     <div class="card-body">
                         <div class="card-sub">
-                            Hakkımızda İle ilgili işlemleri aşağıdan geçerkleştirebilirsiniz. Tema bütünlüğü için sadece 1 adet Öne Çıkan alanı oluşturmayı unutmayın
+                            Öne Çıkan alan İle ilgili işlemleri aşağıdan geçerkleştirebilirsiniz. <strong>Tema bütünlüğü için sadece 1 adet Öne Çıkan alanı oluşturmayı unutmayın</strong>
                         </div>
                         <div class="text-end mb-2 my-2">
-                            <a type="submit" asp-controller="Feature" asp-action="CreateFeature" class="btn btn-outline-info text-end">Yeni Feature Ekle</a>
+                            <a type="submit" asp-controller="Slider" asp-action="CreateSlider" class="btn btn-outline-info text-end">Yeni Öne Çıkan Alan Ekle</a>
                         </div>
                         <table class="table mt-3">
                             <thead>
@@ -45,14 +45,14 @@
                                         count++;
                                         <tr>
                                             <td>@count</td>
+                                            <td>@item.Title</td>
                                             <td>@item.Title1</td>
                                             <td>@item.Title2</td>
-                                            <td>@item.Title3</td>
+                                            <td>@item.Description</td>
                                             <td>@item.Description1</td>
                                             <td>@item.Description2</td>
-                                            <td>@item.Description3</td>
-                                            <td><a class="btn btn-outline-danger" asp-controller="Feature" asp-action="Delete" asp-route-id="@item.DataProtect">Sil</a></td>
-                                            <td><a class="btn btn-outline-warning" asp-controller="Feature" asp-action="Update" asp-route-id="@item.DataProtect">Güncelle</a></td>
+                                            <td><a class="btn btn-outline-danger" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.DataProtector">Sil</a></td>
+                                            <td><a class="btn btn-outline-warning" asp-controller="Slider" asp-action="Update" asp-route-id="@item.DataProtector">Güncelle</a></td>
                                         </tr>
                                     }
                                 </tbody>

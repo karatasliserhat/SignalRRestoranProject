@@ -72,5 +72,29 @@ namespace UdemySignalRProject.UI.Controllers
             return View();
 
         }
+        public async Task<IActionResult> BookingStatusApproved(string id)
+        {
+
+            var response = await _bookingApiService.BookingStatusApproved("Booking", "BookingStatusApproved", id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> BookingStatusCancelled(string id)
+        {
+
+            var response = await _bookingApiService.BookingStatusCancelled("Booking", "BookingStatusCancelled", id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+
     }
 }
