@@ -29,6 +29,7 @@ namespace UdemySignalRProject.DAL.Concreate
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
 
 

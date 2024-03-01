@@ -19,6 +19,7 @@ builder.Services.AddScoped<ISliderApiService, SliderApiService>();
 builder.Services.AddScoped<IBasketApiService, BasketApiService>();
 builder.Services.AddScoped<INotificationApiService, NotificationApiService>();
 builder.Services.AddScoped<IUserApiService, UserApiService>();
+builder.Services.AddScoped<IMessageApiService, MessageApiService>();
 
 builder.Services.AddHttpClient<ICategoryApiService, CategoryApiService>(opts =>
 {
@@ -76,6 +77,11 @@ builder.Services.AddHttpClient<INotificationApiService, NotificationApiService>(
     opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
 });
 builder.Services.AddHttpClient<IUserApiService, UserApiService>(opts =>
+{
+
+    opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+builder.Services.AddHttpClient<IMessageApiService, MessageApiService>(opts =>
 {
 
     opts.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);

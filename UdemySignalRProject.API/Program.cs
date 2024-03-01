@@ -57,6 +57,9 @@ builder.Services.AddScoped<ISliderService, SliderService>();
 builder.Services.AddScoped<IBasketService, BasketService>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IMessageService, MessageService>();
+
+
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 
