@@ -19,8 +19,8 @@ namespace UdemySignalRProject.API.Controllers
 
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
-            await _userService.Login(loginDto);
-            return Ok("Giriş Başarılı");
+            var data =await _userService.Login(loginDto);
+            return Ok(data);
         }
     }
 }

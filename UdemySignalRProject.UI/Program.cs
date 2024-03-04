@@ -8,13 +8,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-//var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 
 //controllerwithviews içerisine eklenecek kod proje seviyesinde authırize işlemi yapacaksak
 //opts =>
 //{
 //    opts.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
 //}
+builder.Services.AddControllersWithViews(opts =>
+{
+    opts.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
+});
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opts =>
 {
 
@@ -28,7 +33,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     };
 });
 
-builder.Services.AddControllersWithViews();
 
 
 

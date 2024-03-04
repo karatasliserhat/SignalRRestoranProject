@@ -18,14 +18,13 @@ namespace UdemySignalRProject.BusinessLayer.Concreate
             _signInManager = signInManager;
         }
 
-        public async Task Login(LoginDto loginDto)
+        public async Task<GetUserDto> Login(LoginDto loginDto)
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
-            if (user != null)
-            {
-               await _signInManager.PasswordSignInAsync(user, loginDto.Password, loginDto.IsRememberMe, true);
-      
-            }
+            await _signInManager.PasswordSignInAsync(user, loginDto.Password, loginDto.IsRememberMe, true);
+            var dataMap = _mapper.Map<GetUserDto>(user);
+            return dataMap;
+
         }
 
         public async Task UserRegister(RegisterDto registerDto)
@@ -39,5 +38,32 @@ namespace UdemySignalRProject.BusinessLayer.Concreate
             }
         }
 
+        public async Task UserEdit(UserEditDto userEditDto)
+        {
+            var userEdit = await _userManager.FindByNameAsync(userEditDto.UserName);
+            if (userEdit is not null)
+            {
+                userEdit.Surname = userEditDto.Surname;
+                userEdit.Name = userEditDto.Name;
+                userEdit.Email = userEditDto.Email;
+                if (userEditDto.Password is not null)
+                    _userManager.PasswordHasher.HashPassword(userEdit, userEditDto.Password);
+                var response = await _userManager.UpdateAsync(userEdit);
+                if (response.Succeeded)
+                {
+                    await _userManager.UpdateSecurityStampAsync(userEdit);
+
+
+                }
+            }
+        }
+        public async Task<UserEditDto> GetUser(string userName)
+        {
+            var userData = await _userManager.FindByNameAsync(userName);
+
+            var values = _mapper.Map<UserEditDto>(userData);
+
+            return values;
+        }
     }
 }

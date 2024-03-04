@@ -5,6 +5,8 @@ namespace UdemySignalRProject.UI.IApiServices
     public interface IUserApiService
     {
         Task<HttpResponseMessage> UserRegister(string controllerName, RegisterDtos registerDto);
-        Task<HttpResponseMessage> UserLogin(string controllerName, LoginDtos loginDtos);
+        Task<GetUserDto> UserLogin(string controllerName, LoginDtos loginDtos);
+        Task<HttpResponseMessage> UserEdit(string controllerName, UserEditDto userEditDto);
+        Task<UserEditDto> GetUser(string controllerName, string userName);
     }
 }

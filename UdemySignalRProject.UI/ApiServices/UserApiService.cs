@@ -1,4 +1,6 @@
-﻿using UdemySignalRProject.UI.Dtos;
+﻿using Newtonsoft.Json;
+using System.Text;
+using UdemySignalRProject.UI.Dtos;
 using UdemySignalRProject.UI.IApiServices;
 
 namespace UdemySignalRProject.UI.ApiServices
@@ -17,9 +19,23 @@ namespace UdemySignalRProject.UI.ApiServices
             var response = await _httpClient.PostAsJsonAsync<RegisterDtos>(controllerName, registerDto);
             return response;
         }
-        public async Task<HttpResponseMessage> UserLogin(string controllerName, LoginDtos loginDtos)
+        public async Task<GetUserDto> UserLogin(string controllerName, LoginDtos loginDtos)
         {
-            var response = await _httpClient.PostAsJsonAsync<LoginDtos>(controllerName, loginDtos);
+            var jsonData = JsonConvert.SerializeObject(loginDtos);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync(controllerName, stringContent);
+
+            return JsonConvert.DeserializeObject<GetUserDto>(await response.Content.ReadAsStringAsync());
+        }
+
+        public async Task<HttpResponseMessage> UserEdit(string controllerName, UserEditDto userEditDto)
+        {
+            var response = await _httpClient.PutAsJsonAsync<UserEditDto>(controllerName, userEditDto);
+            return response;
+        }
+        public async Task<UserEditDto> GetUser(string controllerName, string userName)
+        {
+            var response = await _httpClient.GetFromJsonAsync<UserEditDto>($"{controllerName}/{userName}");
             return response;
         }
     }

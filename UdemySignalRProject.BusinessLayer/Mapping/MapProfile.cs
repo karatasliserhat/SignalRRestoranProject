@@ -72,6 +72,8 @@ namespace UdemySignalRProject.BusinessLayer.Mapping
 
 
             CreateMap<AppUser, RegisterDto>().ReverseMap();
+            CreateMap<AppUser, UserEditDto>().ReverseMap();
+            CreateMap<AppUser, GetUserDto>().ReverseMap();
 
             CreateMap<Message, CreateMessageDto>().ReverseMap();
             CreateMap<Message, UpdateMessageDto>().ReverseMap();
