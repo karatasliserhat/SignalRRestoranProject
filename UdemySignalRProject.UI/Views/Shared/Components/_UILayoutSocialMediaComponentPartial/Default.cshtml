@@ -1,17 +1,9 @@
-﻿<div class="footer_social">
-    <a href="">
-        <i class="fa fa-facebook" aria-hidden="true"></i>
-    </a>
-    <a href="">
-        <i class="fa fa-twitter" aria-hidden="true"></i>
-    </a>
-    <a href="">
-        <i class="fa fa-linkedin" aria-hidden="true"></i>
-    </a>
-    <a href="">
-        <i class="fa fa-instagram" aria-hidden="true"></i>
-    </a>
-    <a href="">
-        <i class="fa fa-pinterest" aria-hidden="true"></i>
-    </a>
+﻿@model List<ResultSocialMediaDto>
+<div class="footer_social">
+    @foreach (var item in Model)
+    {
+        <a href="@item.Url">
+            <i class="@item.Icon" aria-hidden="true"></i>
+        </a>
+    }
 </div>

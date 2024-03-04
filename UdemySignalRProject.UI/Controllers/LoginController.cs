@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using UdemySignalRProject.UI.Dtos;
 using UdemySignalRProject.UI.IApiServices;
 
 namespace UdemySignalRProject.UI.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly IUserApiService _userApiService;
@@ -18,12 +21,16 @@ namespace UdemySignalRProject.UI.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index(LoginDtos loginDtos)
+        public async Task<IActionResult> Index(LoginDtos loginDtos, string returnUrl)
         {
             var response = await _userApiService.UserLogin("Login", loginDtos);
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Category");
+                if (!Url.IsLocalUrl(returnUrl) || returnUrl=="/" || returnUrl==null )
+                {
+                    return RedirectToAction("Index", "Default");
+                }
+                return Redirect(returnUrl);
             }
             return View();
         }

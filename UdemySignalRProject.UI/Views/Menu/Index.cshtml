@@ -120,8 +120,8 @@
                 </div>
             </div>
             <div class="btn-box">
-                <a href="">
-                    View More
+                <a asp-controller="Baskets" asp-action="Index">
+                    Sepete Git
                 </a>
             </div>
         </div>
@@ -145,7 +145,7 @@
             $.ajax({
 
                 type: 'post',
-                data: { ProductId: id},
+                data: { ProductId: id },
                 url: "/Menu/AddBasket/" + id,
                 contentType: 'json',
                 success: function () {

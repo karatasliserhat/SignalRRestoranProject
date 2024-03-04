@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UdemySignalRProject.UI.IApiServices;
 
 namespace UdemySignalRProject.UI.ViewComponents.UILayoutComponents
 {
-    public class _UILayoutSocialMediaComponentPartial:ViewComponent
+    public class _UILayoutSocialMediaComponentPartial : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        private readonly ISocialMediaApiService _socialMediaApiService;
+
+        public _UILayoutSocialMediaComponentPartial(ISocialMediaApiService socialMediaApiService)
         {
-            return View();
+            _socialMediaApiService = socialMediaApiService;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+
+            return View(await _socialMediaApiService.GetListAsync("SocialMedia"));
         }
     }
 }

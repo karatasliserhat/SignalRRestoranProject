@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using UdemySignalRProject.UI.Enums;
 using UdemySignalRProject.UI.Dtos;
+using UdemySignalRProject.UI.Enums;
 using UdemySignalRProject.UI.IApiServices;
 
 namespace UdemySignalRProject.UI.Controllers

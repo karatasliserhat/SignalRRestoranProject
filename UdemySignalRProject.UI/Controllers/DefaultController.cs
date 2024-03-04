@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UdemySignalRProject.UI.Dtos;
 using UdemySignalRProject.UI.IApiServices;
 
 namespace UdemySignalRProject.UI.Controllers
 {
+    [AllowAnonymous]
+
     public class DefaultController : Controller
     {
         private readonly IMessageApiService _messageApiService;

@@ -21,7 +21,7 @@
             <div class="form-left">
                 <img src="~/colorlib-regform-32/images/Sauce1.jpg" width="484" height="584" alt="form">
             </div>
-            <form class="form-detail" asp-controller="Login" asp-action="Index" method="post">
+            <form class="form-detail" asp-controller="Login" asp-action="Index" method="post" asp-route-returnUrl="@Context.Request.Query["ReturnUrl"]">
                 <h2>Giriş Formu</h2>
                 <div class="form-row">
                     <input type="text" asp-for="Email" class="input-text" placeholder="Mail Adresiniz">
