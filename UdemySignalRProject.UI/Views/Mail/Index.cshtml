@@ -1,0 +1,40 @@
+﻿@model CreateMailDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Mail Sayfası</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Mail Gönderme Formu</div>
+                    </div>
+                    <div class="alert alert-warning" asp-validation-summary="ModelOnly"></div><br />
+                    <form asp-action="Index" asp-controller="Mail" method="post">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label asp-for="@Model.ReceiverMail"></label>
+                                <input type="text" class="form-control" asp-for="@Model.ReceiverMail" placeholder="Alıcı Mail Adresi">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Subject"></label>
+                                <input type="text" class="form-control" asp-for="@Model.Subject" placeholder="Konu">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Body"></label>
+                                <textarea class="form-control" cols="5" rows="10" asp-for="@Model.Body"></textarea>
+                            </div>
+                            <div class="card-action">
+                                <button class="btn btn-primary">Gönder</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
