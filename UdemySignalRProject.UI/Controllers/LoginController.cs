@@ -43,7 +43,7 @@ namespace UdemySignalRProject.UI.Controllers
 
                 await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity),
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity),
     authProperties);
 
                 if (!Url.IsLocalUrl(returnUrl) || returnUrl == "/" || returnUrl == null)
@@ -53,6 +53,12 @@ namespace UdemySignalRProject.UI.Controllers
                 return Redirect(returnUrl);
             }
             return View();
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Login");
         }
     }
 }

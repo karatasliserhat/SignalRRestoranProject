@@ -26,11 +26,22 @@
                                 <span class="link-collapse">Yeni Kayıt</span>
                             </a>
                         </li>
-                        <li>
-                            <a asp-controller="Login" asp-action="Index">
-                                <span class="link-collapse">Giriş Yap</span>
-                            </a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a asp-controller="Login" asp-action="LogOut">
+                                    <span class="link-collapse">Çıkış Yap</span>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-controller="Login" asp-action="Index">
+                                    <span class="link-collapse">Giriş Yap</span>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

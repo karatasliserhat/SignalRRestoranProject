@@ -58,10 +58,10 @@ namespace UdemySignalRProject.API.Hubs
             await Clients.All.SendAsync("ReceiveProductCount", value);
             await Clients.All.SendAsync("ReceiveHamburgerProductCount", hambugerProductCount);
             await Clients.All.SendAsync("ReceiveDrinkProductCount", drinkProductCount);
-            await Clients.All.SendAsync("ReceiveProductPriceAvg", productPriceAvg.ToString("0.00") + "₺");
+            await Clients.All.SendAsync("ReceiveProductPriceAvg", productPriceAvg);
             await Clients.All.SendAsync("ReceiveProductPriceMin", productPriceMin);
             await Clients.All.SendAsync("ReceiveProductPriceMax", productPriceMax);
-            await Clients.All.SendAsync("ReceiveProductPriceAvgHamburger", productPriceAvgHamburger.ToString("0.00") + "₺");
+            await Clients.All.SendAsync("ReceiveProductPriceAvgHamburger", productPriceAvgHamburger);
         }
 
         public async Task SendOrder()

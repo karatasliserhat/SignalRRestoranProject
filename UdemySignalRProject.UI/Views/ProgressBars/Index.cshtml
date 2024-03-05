@@ -18,6 +18,8 @@
                 connection.invoke("SendMoneyCases");
                 connection.invoke("SendMenuTables");
                 connection.invoke("SendOrder");
+                connection.invoke("SendProduct");
+                connection.invoke("SendCategory");
 
             }, 1000);
 
@@ -38,6 +40,136 @@
         connection.on("ReceiveActiveOrderCount", (value) => {
 
             $("#activeOrderCount").text(value);
+        });
+
+        connection.on("ReceiveMenuTableCount", (value) => {
+            $("#totalMenuTableCountProgress").empty();
+            $("#totalMenuTableCountProgress").append(`
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted">Masa Sayısı</span>
+                        <span class="text-muted fw-bold"> ${value}</span>
+                    </div>
+                    <div class="progress mb-2" style="height: 7px;">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: ${value}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="${value}%"></div>
+                    </div>`);
+        });
+
+        connection.on("ReceiveProductPriceAvg", (values) => {
+            $("#productTotalPriveAvgProgress").empty();
+            $("#productTotalPriveAvgProgress").append(`
+                        <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted">Ortalama Ürün Fiyatı</span>
+                        <span class="text-muted fw-bold"> ${values}</span>
+                        </div>
+                        <div class="progress mb-2" style="height: 7px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: ${values}%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="${values}%"></div>
+                        </div>`);
+
+        });
+
+        connection.on("ReceiveHamburgerProductCount", (value) => {
+            $("#hamburgerProductCount").empty();
+            $("#hamburgerProductCount").append(`
+                     <div class="d-flex justify-content-between mb-1">
+                    <span class="text-muted">Mevcut Hamburger Sayısı</span>
+                     <span class="text-muted fw-bold"> ${value}</span>
+                    </div>
+                    <div class="progress mb-2" style="height: 7px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: ${value}%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="${value}%"></div>
+                    </div>
+
+            `);
+
+        });
+
+        connection.on("ReceiveDrinkProductCount", (value) => {
+            $("#drinkProductCount").empty();
+            $("#drinkProductCount").append(`
+                     <div class="d-flex justify-content-between mb-1">
+                    <span class="text-muted">Mevcut İçecek Sayısı</span>
+                     <span class="text-muted fw-bold"> ${value}</span>
+                    </div>
+                    <div class="progress mb-2" style="height: 7px;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: ${value}%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="${value}%"></div>
+                    </div>
+
+            `);
+
+        });
+
+        connection.on("ReceiveTotalOrderCount", (value) => {
+            $("#totalOrderCount").empty();
+            $("#totalOrderCount").append(`
+                     <div class="d-flex justify-content-between mb-1">
+                    <span class="text-muted">Toplam Sipariş Sayısı</span>
+                     <span class="text-muted fw-bold"> ${value}</span>
+                    </div>
+                    <div class="progress mb-2" style="height: 7px;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: ${value}%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="${value}%"></div>
+                    </div>
+
+            `);
+
+        });
+
+        connection.on("ReceiveCategoryCount", (value) => {
+            $("#totalCategoryCount").empty();
+            $("#totalCategoryCount").append(`
+                     <div class="d-flex justify-content-between mb-1">
+                     <span class="text-muted">Toplam Kategori Sayısı</span>
+                    <span class="text-muted fw-bold"> ${value}</span>
+                    </div>
+                    <div class="progress mb-2" style="height: 7px;">
+                     <div class="progress-bar bg-primary" role="progressbar" style="width: ${value}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="${value}%"></div>
+                     </div>
+
+            `);
+
+        });
+
+        connection.on("ReceiveProductCount", (value) => {
+            $("#totalProductCount").empty();
+            $("#totalProductCount").append(`
+                     <div class="d-flex justify-content-between mb-1">
+                     <span class="text-muted">Toplam Ürün Sayısı</span>
+                    <span class="text-muted fw-bold"> ${value}</span>
+                    </div>
+                    <div class="progress mb-2" style="height: 7px;">
+                     <div class="progress-bar bg-info" role="progressbar" style="width: ${value}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="${value}%"></div>
+                     </div>
+
+            `);
+
+        });
+
+        connection.on("ReceiveCategoryActiveCount", (value) => {
+            $("#categoryActiveCount").empty();
+            $("#categoryActiveCount").append(`
+                     <div class="d-flex justify-content-between mb-1">
+                     <span class="text-muted">Aktif Kategori Sayısı</span>
+                    <span class="text-muted fw-bold"> ${value}</span>
+                    </div>
+                    <div class="progress mb-2" style="height: 7px;">
+                     <div class="progress-bar bg-success" role="progressbar" style="width: ${value}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="${value}%"></div>
+                     </div>
+
+            `);
+
+        });
+
+        connection.on("ReceiveCategoryPassiveCount", (value) => {
+            $("#categoryPassiveCount").empty();
+            $("#categoryPassiveCount").append(`
+             <div class="d-flex justify-content-between mb-1">
+             <span class="text-muted">Pasif Kategori Sayısı</span>
+            <span class="text-muted fw-bold"> ${value}</span>
+            </div>
+            <div class="progress mb-2" style="height: 7px;">
+             <div class="progress-bar bg-danger" role="progressbar" style="width: ${value}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="${value}%"></div>
+             </div>
+
+    `);
+
         });
     });
 
@@ -66,86 +198,33 @@
                     <div class="col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Profit</span>
-                                        <span class="text-muted fw-bold"> $3K</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="78%"></div>
-                                    </div>
+
+                                <div class="progress-card" id="totalMenuTableCountProgress">
+
                                 </div>
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Orders</span>
-                                        <span class="text-muted fw-bold"> 576</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="65%"></div>
-                                    </div>
+                                <div class="progress-card" id="productTotalPriveAvgProgress">
+
                                 </div>
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Tasks Complete</span>
-                                        <span class="text-muted fw-bold"> 70%</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="70%"></div>
-                                    </div>
+                                <div class="progress-card" id="hamburgerProductCount">
+
                                 </div>
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Open Rate</span>
-                                        <span class="text-muted fw-bold"> 60%</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%"></div>
-                                    </div>
+                                <div class="progress-card" id="drinkProductCount">
+
                                 </div>
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Open Rate</span>
-                                        <span class="text-muted fw-bold"> 60%</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%"></div>
-                                    </div>
+                                <div class="progress-card" id="totalOrderCount">
+
                                 </div>
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Orders</span>
-                                        <span class="text-muted fw-bold"> 576</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="65%"></div>
-                                    </div>
+                                <div class="progress-card" id="totalCategoryCount">
+
                                 </div>
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Tasks Complete</span>
-                                        <span class="text-muted fw-bold"> 70%</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="70%"></div>
-                                    </div>
+                                <div class="progress-card" id="totalProductCount">
+                                    
                                 </div>
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Open Rate</span>
-                                        <span class="text-muted fw-bold"> 60%</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%"></div>
-                                    </div>
+                                <div class="progress-card" id="categoryActiveCount">
+                                   
                                 </div>
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Open Rate</span>
-                                        <span class="text-muted fw-bold"> 60%</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%"></div>
-                                    </div>
+                                <div class="progress-card" id="categoryPassiveCount">
+                                    
                                 </div>
                             </div>
                         </div>
@@ -178,6 +257,49 @@
                                         <div class="numbers">
                                             <p class="card-category">Masa Sayısı</p>
                                             <h4 class="card-title" id="menuTableCount"></h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr />
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center">
+                                            <i class="la la-glass text-danger"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 d-flex align-items-center">
+                                        <div class="numbers">
+                                            <p class="card-category">Static Rezervasyon Sayısı</p>
+                                            <h4 class="card-title" id="bookingCount">256</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center">
+                                            <i class="la la-ship text-info"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 d-flex align-items-center">
+                                        <div class="numbers">
+                                            <p class="card-category">Static Ürün Sayısı</p>
+                                            <h4 class="card-title" id="productCount">155</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center">
+                                            <i class="la la-shopping-cart text-success"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 d-flex align-items-center">
+                                        <div class="numbers">
+                                            <p class="card-category">Static Toplam Sipariş Sayısı</p>
+                                            <h4 class="card-title" id="productCount">10755</h4>
                                         </div>
                                     </div>
                                 </div>
