@@ -1,9 +1,7 @@
-<h1>CarBook - Araç Kiralama Sitesi</h1>
+<h1>SignalR - Restoran Otomasyonu</h1>
 <h3>Projenin Temel Amacı</h3>
-<p>Kullanıcılar, alacakları lokasyona göre uygun araçları listeleyebilir ve istedikleri araca ön kayıt oluşturarak aracı kiralayabilirler.</p>
-<p>ASP.NET Core 8.0 Web API ve MVC kullanılarak geliştirdiğim proje, tüm CRUD işlemlerini API üzerinden gerçekleştirir ve bu işlemler MVC tarafında consume edilir.
-  Dinamik veritabanı yönetimi için Entity Framework Code First kullanılmıştır. 
- Onion Architecture mimari yapısı ve CQRS, Mediator, Repository design patternler kullanılarak projede uygulanarak kodun daha modüler ve sürdürülebilir olmasına öncelik verilmiştir.</p>
+<p>Müşteriler web üzerinden online yemek siparişi verebilir beğendiği yiyecek ve içecekleri sepetine ekleyebilir rezervasyon oluşturabilir, mesaj gönderebilir.</p>
+<p>ASP.NET Core 8.0 Web API ve MVC kullanılarak geliştirdiğim proje, tüm CRUD işlemlerini API üzerinden gerçekleştirir ve bu işlemler MVC tarafında consume edilir. Dinamik veritabanı yönetimi için Entity Framework Code First kullanılmıştır. N tier Architecture mimari yapısı ve Repository design pattern kullanılarak projede uygulanarak kodun daha modüler ve sürdürülebilir olmasına öncelik verilmiştir.</p>
  <h3>Kullanılan Teknolojiler</h3>
  <ul>
    <li>Asp.Net Core 8.0</li>
