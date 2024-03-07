@@ -10,6 +10,7 @@
    <li>Entity Framework Code First</li>
    <li>SignalR</li>
    <li>MailKit</li>
+  <li>AutoMapper</li>
    <li>Html</li>
    <li>Css</li>
    <li>JavaScript</li>
@@ -49,6 +50,7 @@
   <li>Asp.Net Core Web API</li>
   <li>Çok Katmanlı Mimari</li>
   <li>Repository Dessign Pattern</li>
+ <li>AutoMapper</li>
   <li>Entity Framework Code First LINQ</li>
   <li>SignalR</li>
 </ul>
